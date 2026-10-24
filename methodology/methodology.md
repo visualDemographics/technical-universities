@@ -61,8 +61,8 @@ To ensure that the numerator matches the exact scope of student-facing activity,
 - **Definition**: In continental Europe and parts of Asia, basic research institutes are legally independent from university balance sheets (e.g., Max Planck Society, Helmholtz Association, ETH Domain, IBS, A\*STAR), yet their directors hold joint professorships (*Doppelberufungen*) and directly supervise Bachelor, Master, and Doctoral students:
   $$\text{Augmented Budget}_{u} = \text{Core Academic Budget}_{u} + \sum_{k \in \mathcal{E}_u} \left( \text{Budget}_{k} \times w_k \right)$$
 - **Audited Academic Weights ($w_k$)**:
-  - **TUM Garching & Munich Cluster** (€971.6M/yr total): MPI for Plasma Physics (IPP, $w = 0.50$), MPI for Extraterrestrial Physics (MPE, $w = 0.50$), MPI of Quantum Optics (MPQ, $w = 0.50$), MPI for Astrophysics (MPA, $w = 0.50$), MPI of Biochemistry ($w = 0.40$), Helmholtz Munich ($w = 0.40$), ESO Headquarters ($w = 0.30$), FRM II / MLZ research reactor ($w = 0.60$), Leibniz Supercomputing Centre (LRZ, $w = 0.50$). Adds **€437.2M** in attributable academic research capacity.
-  - **ETH Domain** (CHF 775M/yr total): PSI ($w = 0.45$), Empa ($w = 0.40$), Eawag ($w = 0.40$), WSL ($w = 0.35$). Adds **CHF 319.5M** in attributable research capacity.
+  - **TUM Garching & Munich Cluster** (€971.6M/yr total): MPI for Plasma Physics (IPP, $w = 0.50$), MPI for Extraterrestrial Physics (MPE, $w = 0.50$), MPI of Quantum Optics (MPQ, $w = 0.50$), MPI for Astrophysics (MPA, $w = 0.50$), MPI of Biochemistry ($w = 0.40$), Helmholtz Munich ($w = 0.40$), ESO Headquarters ($w = 0.30$), FRM II / MLZ research reactor ($w = 0.60$), Leibniz Supercomputing Centre (LRZ, $w = 0.50$). Adds **€419.4M** in attributable academic research capacity.
+  - **ETH Domain** (CHF 775M/yr total): PSI ($w = 0.45$), Empa ($w = 0.40$), Eawag ($w = 0.40$), WSL ($w = 0.35$). Adds **CHF 326.8M** in attributable research capacity.
   - **MIT Kendall Square**: Broad Institute ($w = 0.35$), Whitehead Institute ($w = 0.40$). Adds **\$356.9M**.
   - **KAIST Daedeok Innopolis**: ETRI ($w = 0.35$), IBS Campus Centers ($w = 0.40$). Adds **KRW 362.5B**.
   - **NTU Jurong Innovation District**: A\*STAR SIMTech/ARTC ($w = 0.35$), RCEs SCELSE/EOS ($w = 0.40$). Adds **S\$178.0M**.
@@ -102,12 +102,13 @@ When decomposing the apparent per-student funding gap between US private institu
 
 $$\phi_j = \frac{1}{K!} \sum_{\pi \in \Pi} \Delta_j(\pi)$$
 
-The decomposition reveals that the raw headline gap of **\$586k / student** is reduced by **67.4%** down to **\$191k / student**:
-1. **Stripping Defense FFRDCs (JPL & Lincoln Lab)**: $-\$210\text{k}$ ($35.8\%$ of total compression).
-2. **Stripping Clinical Hospitals (Klinikum rechts der Isar)**: $-\$16\text{k}$ ($2.7\%$).
-3. **Adding Garching Research Ecosystem**: $-\$9\text{k}$ ($1.5\%$).
-4. **Applying OECD Purchasing Power Parity (PPP)**: $-\$9\text{k}$ ($1.5\%$).
-5. **Remaining Gap (Undergraduate Scale & Endowment Intensity)**: $\$191\text{k}$ reflecting MIT/Caltech's compact student body ($\sim 7\text{k}$ average) vs. TUM's mass enrollment ($52.9\text{k}$).
+The decomposition reveals that the raw headline gap of **\$889k / student** is reduced by **65.7%** down to **\$305k / student**:
+1. **Stripping Defense FFRDCs (JPL & Lincoln Lab)**: $-\$602\text{k}$ Shapley attribution ($\phi$).
+2. **Stripping Clinical Hospitals (Klinikum rechts der Isar)**: $+\$19\text{k}$ Shapley attribution ($\phi$), reflecting that patient care is non-instructional.
+3. **Adding External Research Clusters**: $+\$11\text{k}$ net Shapley attribution ($\phi$).
+4. **Applying OECD Purchasing Power Parity (PPP)**: $-\$11\text{k}$ Shapley attribution ($\phi$).
+5. **Harmonizing On-Campus FTE Scale**: $-\$1.4\text{k}$ Shapley attribution ($\phi$).
+6. **Remaining Adjusted Disparity (Tier 2 PPP)**: $\$305\text{k}$ reflecting MIT/Caltech's compact student body ($\sim 7\text{k}$ average) vs. TUM's mass enrollment ($51.2\text{k}$ on-campus FTE).
 
 ---
 
@@ -115,13 +116,13 @@ The decomposition reveals that the raw headline gap of **\$586k / student** is r
 
 We model the complete financial lifecycle for an international (Non-EU / Non-Domestic) STEM Master's student:
 1. **Tuition & Living Costs over Program Duration**:
-   - Imperial College London: 1.0-year MSc (£41k tuition + £22.7k living = **\$81.4k USD**).
-   - NTU Singapore: 1.0-year MSc (S\$52k tuition + S\$17.4k living = **\$51.9k USD**).
-   - ETH Zurich: 2.0-year MSc (CHF 8.76k tuition + CHF 52.8k living = **\$69.9k USD**).
-   - TUM: 2.0-year MSc (€20k tuition + €32.4k living = **\$56.7k USD**).
+   - Imperial College London: 1.0-year MSc (£41k tuition + £22.7k living = **\$73.6k USD** net out-of-pocket).
+   - NTU Singapore: 1.0-year MSc (S\$52k tuition + S\$17.4k living = **\$48.0k USD** net out-of-pocket).
+   - ETH Zurich: 2.0-year MSc (CHF 8.76k tuition + CHF 52.8k living = **\$66.9k USD** net out-of-pocket).
+   - TUM: 2.0-year MSc (€20k tuition + €32.4k living = **\$49.1k USD** net out-of-pocket).
    - MIT: 2.0-year SM (\$128.6k tuition + \$53.2k living = **\$181.8k USD** sticker, **\$117.5k USD** net).
-   - KAIST: 2.0-year MS (100% tuition waiver + stipend = **\$2.3k USD** net out-of-pocket).
+   - KAIST: 2.0-year MS (100% tuition waiver + living stipend = **\$1.7k USD** net out-of-pocket).
 2. **10-Year Post-Tax Career Trajectory**:
-   - Accounts for host tech-hub salaries, local income taxes, employee social security contributions, and living expenses.
-   - **Payback Horizons**: KAIST (Year 0.5), Tsinghua (Year 1.0), TUM (Year 1.5), ETH Zurich (Year 1.5), NTU (Year 2.0), MIT (Year 2.5), Caltech (Year 3.0), Imperial (Year 3.0).
+   - Accounts for host tech-hub salaries, local income taxes, employee social security contributions, and living expenses across CS/AI and traditional engineering tracks.
+   - **Payback Horizons**: KAIST (Year 1), Tsinghua (Year 1), ETH Zurich (Year 2), Georgia Tech (Year 2), MIT (Year 2), NTU (Year 2), Caltech (Year 3), TUM (Year 3), Imperial (Year 7 due to high London living expenses and 1-year non-subsidized tuition).
 

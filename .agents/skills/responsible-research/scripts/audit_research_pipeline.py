@@ -23,7 +23,7 @@ STRUCTURAL_NUMBERS = {
     -1, -1.0, 0, 0.0, 0.05, 0.5, 0.975, 1, 1.0, 2, 2.0, 3, 3.0, 4, 4.0,
     5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
     30, 80, 100, 100.0, 150, 200, 250, 300, 1000, 10000, 100000, 100000.0,
-    1e-4, 1e-10, 1.95996,
+    1000000, 1000000.0, 1e6, 1e-4, 1e-10, 1.95996,
 }
 
 
@@ -146,7 +146,7 @@ def check_strict_ast_code_contract():
             # 4c. Function definitions
             if isinstance(node, ast.FunctionDef):
                 fn_name = node.name
-                is_data_fn = fn_name.startswith(("build_", "fit_", "compute_", "load_", "check_"))
+                is_data_fn = fn_name.startswith(("build_", "fit_", "compute_", "load_", "check_", "prepare_", "audit_"))
 
                 # Check unreachable dead code after `return`
                 for stmt_idx, stmt in enumerate(node.body):
@@ -177,6 +177,13 @@ def check_strict_ast_code_contract():
                                 if val not in STRUCTURAL_NUMBERS:
                                     targets = ", ".join(ast.unparse(t) for t in sub.targets)
                                     violations.append(f"{fname}:{sub.lineno} - Hardcoded assignment `{targets} = {val}` in `{fn_name}`")
+
+                        # Uncorroborated domain floats in binary arithmetic expressions
+                        if isinstance(sub, ast.BinOp):
+                            for operand in (sub.left, sub.right):
+                                if isinstance(operand, ast.Constant) and isinstance(operand.value, (int, float)) and not isinstance(operand.value, bool):
+                                    if operand.value not in STRUCTURAL_NUMBERS:
+                                        violations.append(f"{fname}:{sub.lineno} - Domain float literal `{operand.value}` in binary arithmetic in `{fn_name}`")
 
                         # Hardcoded empirical literals in equality assertions
                         if isinstance(sub, ast.Assert) and fn_name != "build_literature_benchmarks":
