@@ -1,0 +1,16 @@
+# Falsifiable Hypotheses & Structural Mechanisms
+
+## Hypothesis H1: Accounting Boundary & Ecosystem Reversal (The "Garching / FFRDC Paradox")
+- **Statement**: In unadjusted headline figures (Tier 0), US private institutes (**Caltech** and **MIT**) and hospital-affiliated European universities (**TUM**, **Imperial**) exhibit massive raw budget distortions due to closed federal defense/aerospace labs (**JPL** $\sim\$2.5\text{B}$, **Lincoln Lab** $\sim\$1.2\text{B}$, **GTRI** $\sim\$0.94\text{B}$) and clinical hospitals (**Klinikum rechts der Isar** $>\text{€}1.1\text{B}$). Conversely, continental European and Asian universities legally separate co-located basic research institutes (**Max Planck & Helmholtz in Garching** for TUM; **PSI/Empa/Eawag/WSL** for ETH; **IBS/ETRI** for KAIST; **A\*STAR** for NTU) off-balance-sheet.
+- **Testable Prediction**: Stripping clinical hospitals and non-student military/space FFRDCs while crediting academically integrated external campus ecosystems (Tier 2) and converting via Purchasing Power Parity (PPP) compresses the apparent US-vs.-Europe/Asia resource gap by $>45\%$ in sequential Shapley waterfall decomposition.
+
+## Hypothesis H2: Scale Dilution vs. Research Efficiency Frontier
+- **Statement**: Mass-enrollment public flagship technical universities (**TUM** $\sim 52\text{k}$ headcount, **Georgia Tech** $\sim 53\text{k}$ headcount / $\sim 32\text{k}$ on-campus FTE, **Tsinghua** $\sim 59\text{k}$) operate on a high-throughput instructional scale compared to boutique elite institutes (**Caltech** $\sim 2.4\text{k}$, **MIT** $\sim 11.9\text{k}$, **KAIST** $\sim 11.2\text{k}$) and intermediate federal models (**ETH Zurich** $\sim 25\text{k}$, **Imperial** $\sim 22\text{k}$, **NTU** $\sim 35\text{k}$).
+- **Testable Prediction**: While boutique US private universities maximize raw per-student expenditure and top-1% citation density per faculty ($PP_{\text{top 1\%}}$), European and Asian flagships (**ETH**, **TUM**, **Imperial**, **Tsinghua**, **NTU**, **KAIST**) achieve significantly higher **cost-normalized research efficiency** (top-decile publications and employability yield per $\$10\text{M}$ PPP core academic spend).
+
+## Hypothesis H3: International Master's Net ROI & Payback Asymmetry
+- **Statement**: For an international (non-EU/non-domestic) STEM Master's student, total up-front investment (Tuition + Living Costs over 1 vs. 2 years) spans an order of magnitude—from heavily subsidized continental European and Asian degrees (**ETH Zurich**, **KAIST**, **Tsinghua**, and **TUM** even post-2024 non-EU tuition introduction) to high-tuition Anglo-American programs (**MIT**, **Caltech**, **Imperial**, **Georgia Tech**).
+- **Testable Prediction**:
+  1. **Payback Horizon**: Continental European (**ETH**, **TUM**) and Asian (**KAIST**, **Tsinghua**) programs achieve positive net cumulative financial break-even 2 to 4 years earlier than high-sticker-price US/UK programs when funded out-of-pocket.
+  2. **10-Year Cumulative Earnings**: Over a 10-year post-graduation horizon, nominal after-tax cumulative wealth is dominated by **regional labor market placement and tax structure** (US Tech Hubs and Zurich/Switzerland lead in nominal net USD, Singapore leads Asia due to low tax wedges, and Munich/TUM + Zurich/ETH dominate risk-adjusted return per dollar of up-front student outlay).
+

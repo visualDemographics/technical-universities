@@ -1,0 +1,37 @@
+university_id,year,enrolled_headcount,on_campus_fte,core_academic_budget_lcu_m,core_budget_usd_ppp_m,real_budget_per_fte_usd_ppp,notes,fte_index_2010,budget_per_fte_index_2010
+Caltech,2010,2175,2175,540.0,540.0,248276,Caltech compact cohort; campus core budget ex-JPL,100.0,100.0
+Caltech,2015,2240,2240,680.0,680.0,303571,Caltech campus endowment support,103.0,122.3
+Caltech,2020,2233,2233,790.0,790.0,353784,Caltech campus core,102.7,142.5
+Caltech,2024,2400,2400,914.2,914.2,380918,Caltech FY24 campus exp ex-JPL,110.3,153.4
+ETH_Zurich,2010,16300,16100,1320.0,1321.3,82068,ETH Zurich federal core funding baseline,100.0,100.0
+ETH_Zurich,2015,19200,18900,1580.0,1581.6,83683,ETH steady master expansion,117.4,102.0
+ETH_Zurich,2020,23400,23100,1840.0,1841.8,79732,ETH federal contribution,143.5,97.2
+ETH_Zurich,2024,26198,25800,2024.0,2026.0,78527,ETH Zurich FY24 core op exp,160.2,95.7
+Georgia_Tech,2010,20720,20720,780.0,780.0,37645,Georgia Tech pre-OMSCS baseline on-campus,100.0,100.0
+Georgia_Tech,2015,25034,23500,1050.0,1050.0,44681,Georgia Tech launches OMSCS in 2014,113.4,118.7
+Georgia_Tech,2020,39772,28200,1420.0,1420.0,50355,Georgia Tech OMSCS rapid scaling,136.1,133.8
+Georgia_Tech,2024,53350,30800,1799.8,1799.8,58435,Georgia Tech FY24 core exp ex-GTRI; 20.8k online MS,148.6,155.2
+Imperial,2010,13964,13800,710.0,1028.9,74558,Imperial College pre-expansion,100.0,100.0
+Imperial,2015,16610,16200,920.0,1323.7,81710,Imperial White City campus development,117.4,109.6
+Imperial,2020,19924,19400,1150.0,1654.7,85294,Imperial postgraduate expansion,140.6,114.4
+Imperial,2024,23311,22400,1327.2,2008.8,89679,Imperial FY24 underlying core operating exp,162.3,120.3
+KAIST,2010,9500,9300,520000.0,641.1,68935,KAIST national institute baseline,100.0,100.0
+KAIST,2015,10800,10600,740000.0,912.4,86075,KAIST Daedeok research expansion,114.0,124.9
+KAIST,2020,11500,11300,980000.0,1208.3,106929,KAIST national research programs,121.5,155.1
+KAIST,2024,12348,12100,1180000.0,1454.9,120240,KAIST FY24 official budget,130.1,174.4
+MIT,2010,10566,10566,1850.0,1850.0,175090,MIT stable boutique scale; core campus academic budget,100.0,100.0
+MIT,2015,11319,11319,2350.0,2350.0,207615,MIT endowment & campus research growth,107.1,118.6
+MIT,2020,11520,11520,2850.0,2850.0,247396,MIT Schwarzman College of Computing expansion,109.0,141.3
+MIT,2024,11886,11886,3219.0,3219.0,270823,MIT FY24 core campus exp ex-Lincoln Lab,112.5,154.7
+NTU,2010,23000,22500,950.0,1191.0,52933,NTU transformation into research-intensive university,100.0,100.0
+NTU,2015,27500,26800,1250.0,1567.1,58474,NTU RIE2020 research investment,119.1,110.5
+NTU,2020,31500,30800,1520.0,1905.7,61873,NTU Smart Campus development,136.9,116.9
+NTU,2024,33500,32800,1680.0,2106.2,64213,NTU FY24 operating exp S$1.68B,145.8,121.3
+TUM,2010,26000,25200,560.0,746.7,29631,TUM pre-Excellence Initiative expansion,100.0,100.0
+TUM,2015,37800,36800,780.0,1054.1,28644,TUM rapid enrollment expansion under tuition-free regime,146.0,96.7
+TUM,2020,45000,43800,950.0,1292.5,29509,"TUM enrollment passes 45,000 students",173.8,99.6
+TUM,2024,52931,51200,1098.2,1566.5,30596,TUM FY24 core academic budget ex-Klinikum; 52.9k headcount,203.2,103.3
+Tsinghua,2010,34000,33200,6800.0,1866.2,56211,Tsinghua 985/211 project baseline,100.0,100.0
+Tsinghua,2015,46000,44800,15500.0,4253.9,94953,Tsinghua Double First Class launch,134.9,168.9
+Tsinghua,2020,53000,51800,28000.0,7684.4,148347,Tsinghua research surge,156.0,263.9
+Tsinghua,2024,63132,61500,38569.0,10585.0,172114,Tsinghua FY24 official departmental budget,185.2,306.2
