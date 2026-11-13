@@ -28,7 +28,7 @@ Conduct a rigorous, multi-dimensional descriptive and structural comparative ana
    - **QS World University Rankings** (Overall & Engineering/Technology Subject Rank).
    - **Emerging Global Employability University Ranking (GEURS)** and **QS Employer Reputation**.
    - **Multi-Dimensional Research Efficiency**: Field-normalized citation excellence (**CWTS Leiden $PP_{\text{top 10\%}}$ and $PP_{\text{top 1\%}}$**), **QS Citations per Faculty**, high-impact publication yield per $\$10\text{M}$ PPP research expenditure, and deep-tech spin-off/patent intensity.
-4. **International Master's Student Lifecycle (Tuition, Living Costs & 10-Year Salary ROI)**:
-   - Evaluates the financial lifecycle for a **Non-Domestic / Non-EU STEM Master's Student** (anchored on Engineering & Computer Science / EECS / MechEng, with sensitivity bounds from traditional Engineering to CS/AI).
-   - Accounts for **1-year** (Imperial, NTU) vs. **2-year** (MIT, Caltech, Georgia Tech, ETH, TUM, Tsinghua, KAIST) degree durations, recent fee reforms (TUM non-EU tuition fees introduced 2024/25; ETH 2025 international fee revision), living costs, scholarship/TA/RA/HiWi offsets, and **10-year cumulative post-graduation earnings** (Nominal USD Gross, After-Tax Net, and PPP-Adjusted).
+4. **Undergraduate & Graduate Student Lifecycle (Tuition, Living Costs, Foregone Wages & 20-Year Salary ROI)**:
+   - Evaluates the financial lifecycle across all 4 cohorts (**Master & Bachelor $\times$ International & Domestic/In-State**, anchored on Engineering & Computer Science / EECS / MechEng, with sensitivity bounds from Mechanical Engineering to CS/AI).
+   - Accounts for **1-year** (Imperial, NTU) vs. **2-year** (MIT, Caltech, Georgia Tech, ETH, TUM, Tsinghua, KAIST) Master durations and **3-year** (Imperial, ETH, TUM) vs. **4-year** (US/Asia) Bachelor durations, recent fee reforms (TUM non-EU tuition fees introduced 2024/25; ETH 2025 international fee revision), student vs. post-graduation single-adult city living costs, study-phase foregone earnings, and **20-year cumulative post-graduation excess wealth & ROI trajectories** against empirical age-20–45 no-college wage baselines.
 

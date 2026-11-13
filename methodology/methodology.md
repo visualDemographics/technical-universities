@@ -60,12 +60,33 @@ To ensure that the numerator matches the exact scope of student-facing activity,
 ### Tier 2: Ecosystem-Augmented Student-Facing Budget (The "Garching Rule")
 - **Definition**: In continental Europe and parts of Asia, basic research institutes are legally independent from university balance sheets (e.g., Max Planck Society, Helmholtz Association, ETH Domain, IBS, A\*STAR), yet their directors hold joint professorships (*Doppelberufungen*) and directly supervise Bachelor, Master, and Doctoral students:
   $$\text{Augmented Budget}_{u} = \text{Core Academic Budget}_{u} + \sum_{k \in \mathcal{E}_u} \left( \text{Budget}_{k} \times w_k \right)$$
-- **Audited Academic Weights ($w_k$)**:
+- **Model Calibration & Sensitivity: Academic Integration Weights ($w_k$)**:
+  *(Methodological note: While partner institute operating budgets are drawn directly from official audited annual reports, the academic attribution weights $w_k \in [0.25, 0.60]$ constitute a structural model calibration based on joint faculty chairs [Doppelberufungen] and graduate thesis supervision. In compliance with the Responsible Research Protocol, these parameters are classified as `Strukturelle_Modellkalibrierung` and accompanied by explicit $\pm 50\%$ sensitivity intervals in `datasets/university_master_comparison_2024.csv` and visual error bars in Panels A & C.)*
   - **TUM Garching & Munich Cluster** (€971.6M/yr total): MPI for Plasma Physics (IPP, $w = 0.50$), MPI for Extraterrestrial Physics (MPE, $w = 0.50$), MPI of Quantum Optics (MPQ, $w = 0.50$), MPI for Astrophysics (MPA, $w = 0.50$), MPI of Biochemistry ($w = 0.40$), Helmholtz Munich ($w = 0.40$), ESO Headquarters ($w = 0.30$), FRM II / MLZ research reactor ($w = 0.60$), Leibniz Supercomputing Centre (LRZ, $w = 0.50$). Adds **€419.4M** in attributable academic research capacity.
   - **ETH Domain** (CHF 775M/yr total): PSI ($w = 0.45$), Empa ($w = 0.40$), Eawag ($w = 0.40$), WSL ($w = 0.35$). Adds **CHF 326.8M** in attributable research capacity.
   - **MIT Kendall Square**: Broad Institute ($w = 0.35$), Whitehead Institute ($w = 0.40$). Adds **\$356.9M**.
   - **KAIST Daedeok Innopolis**: ETRI ($w = 0.35$), IBS Campus Centers ($w = 0.40$). Adds **KRW 362.5B**.
   - **NTU Jurong Innovation District**: A\*STAR SIMTech/ARTC ($w = 0.35$), RCEs SCELSE/EOS ($w = 0.40$). Adds **S\$178.0M**.
+
+### Double-Counting Resolution & Conservative Tier 2 Lower Bounds
+To address the risk of double-counting entities that are physically hosted on university property and whose funding might partially pass through the university general ledger, we classify all 25 partner research institutes into two distinct legal categories:
+1. **Legally Independent External Partners (`is_legally_independent = True`)**: Autonomous public/non-profit research institutions with entirely segregated balance sheets, independent governance, and dedicated statutory appropriations:
+   - Max Planck Institutes (IPP, MPE, MPQ, MPA, Biochemistry) and Helmholtz Munich
+   - European Southern Observatory (ESO) and Leibniz Supercomputing Centre (LRZ)
+   - ETH Domain institutes (PSI, Empa, Eawag, WSL)
+   - Broad Institute and Whitehead Institute (Cambridge, MA)
+   - Francis Crick Institute (London)
+   - Electronics and Telecommunications Research Institute (ETRI, Korea)
+   - A\*STAR Research Institutes (SIMTech, ARTC, Singapore)
+2. **On-Campus Hosted Centers with Potential Internal Consolidation (`is_legally_independent = False`)**:
+   - **TUM Research Neutron Source Heinz Maier-Leibnitz (FRM II)** (€72.0M gross): Operated by TUM as a corporate entity with €43.2M ($w = 0.60$) attributable research.
+   - **Tsinghua BNRist & State Key Laboratories** (6.5B RMB and 8.0B RMB gross): Key national research labs physically integrated within university departments.
+   - **KAIST Institute for Basic Science (IBS) Campus Centers** (KRW 250.0B gross): Dedicated national basic science centers hosted within KAIST departments.
+   - **NTU Research Centres of Excellence (SCELSE & EOS)** (SGD 200.0M gross): MOE-funded national centers embedded on campus.
+
+By computing a **Conservative Tier 2 Lower Bound** that includes *only* legally independent external entities:
+$$\text{Tier 2}_{\text{Conservative, Indep}} = \text{Tier 1}_{\text{Core}} + \sum_{k \in \mathcal{E}_{\text{indep}}} \left( B_k \times w_k \right)$$
+we establish a rigorous sensitivity bound (visualized as lower error whiskers in Panel C) that remains completely unaffected even if internal consolidation were present.
 
 ---
 
@@ -77,6 +98,17 @@ A university's per-student intensity depends critically on the denominator defin
    - In Fall 2024, Georgia Tech enrolled **53,350 total students**, of whom **20,850** were enrolled in low-cost online distance Master's programs (OMSCS, OMSA, OMSCyber).
    - Dividing Georgia Tech's campus budget by total headcount yields $\$33.7\text{k}/\text{student}$, understating actual on-campus expenditure.
    - Standardizing by **30,800 on-campus FTEs** establishes the true campus resource intensity: **$\$58.4\text{k}/\text{FTE}$** (Tier 1) and **$\$63.0\text{k}/\text{FTE}$** (Tier 2).
+3. **Georgia Tech Online Delivery Cost Cleaning**:
+   - Online Master's students pay ~$3,740 per academic year, operating at a cost-recovery rate.
+   - Isolating this delivery cost ($\sim \$78.0\text{M}$ for 20,850 online students) from Georgia Tech's Core Academic budget ($1,799.8M) isolates pure on-campus teaching expenditure:
+     $$\text{Core}_{\text{On-Campus}} = \$1{,}799.8\text{M} - \$78.0\text{M} = \$1{,}721.8\text{M}$$
+     $$\text{Tier 1}_{\text{Clean}} = \frac{\$1{,}721.8\text{M}}{30{,}800\text{ FTE}} = \$55{,}903\text{ / FTE}$$
+   - This prevents cross-subsidization distortion while preserving exact per-FTE accounting.
+4. **Clinical Medical Student Denominator Sensitivity (TUM & Imperial)**:
+   - Universities with clinical faculties face an asymmetry: non-academic hospital expenditures are excluded from Tier 1, but clinical students might remain in the denominator.
+   - **TUM**: Of its 51,200 on-campus FTEs, exactly **1,666 students** are enrolled in the clinical phase of human medicine (*Staatsexamen Medizin 2. Studienabschnitt*, TUM in Zahlen 2023, p. 13), fully trained and budgeted within *Klinikum rechts der Isar*. Excluding them raises TUM's core STEM/management resources from **\$30,596 to \$31,623 PPP / FTE** (+3.4%).
+   - **Imperial College London**: Imperial's Faculty of Medicine accounts for **4,665 FTEs** (including 2,734 undergraduate MBBS students; Imperial Statistics Guide 2024–25, p. 4). Excluding the medical cohort lifts core STEM/business resources from **\$89,679 to \$113,265 PPP / FTE** (+26.3%).
+   - Both variations are explicitly incorporated into Panel C sensitivity bounds.
 
 ---
 
@@ -112,9 +144,9 @@ The decomposition reveals that the raw headline gap of **\$889k / student** is r
 
 ---
 
-## 6. International Master's Total Cost & 10-Year Career ROI Model
+## 6. International & Domestic Degree Total Cost & 20-Year Career ROI Model
 
-We model the complete financial lifecycle for an international (Non-EU / Non-Domestic) STEM Master's student:
+We model the complete financial lifecycle across all 4 cohorts (Master & Bachelor $\times$ International & Domestic/In-State):
 1. **Tuition & Living Costs over Program Duration**:
    - Imperial College London: 1.0-year MSc (£41k tuition + £22.7k living = **\$73.6k USD** net out-of-pocket).
    - NTU Singapore: 1.0-year MSc (S\$52k tuition + S\$17.4k living = **\$48.0k USD** net out-of-pocket).
@@ -122,7 +154,12 @@ We model the complete financial lifecycle for an international (Non-EU / Non-Dom
    - TUM: 2.0-year MSc (€20k tuition + €32.4k living = **\$49.1k USD** net out-of-pocket).
    - MIT: 2.0-year SM (\$128.6k tuition + \$53.2k living = **\$181.8k USD** sticker, **\$117.5k USD** net).
    - KAIST: 2.0-year MS (100% tuition waiver + living stipend = **\$1.7k USD** net out-of-pocket).
-2. **10-Year Post-Tax Career Trajectory**:
-   - Accounts for host tech-hub salaries, local income taxes, employee social security contributions, and living expenses across CS/AI and traditional engineering tracks.
-   - **Payback Horizons**: KAIST (Year 1), Tsinghua (Year 1), ETH Zurich (Year 2), Georgia Tech (Year 2), MIT (Year 2), NTU (Year 2), Caltech (Year 3), TUM (Year 3), Imperial (Year 7 due to high London living expenses and 1-year non-subsidized tuition).
+2. **20-Year Post-Tax Career Trajectory & Age-Graded No-College Counterfactual**:
+   - Piecewise linear interpolation from Year 1 starting salary to Year 10 mid-career salary (`yr = 1..10`) and from Year 10 to Year 20 senior salary (`yr = 10..20`), net of effective single-earner income tax and employee social security contributions.
+   - **Study-Phase Foregone Earnings**: Country-specific median 20-year-old net salary (`youth_median_gross_salary_lcu`) for Bachelor cohorts and Bachelor Year-1 net salary for Master cohorts.
+   - **Career-Phase Counterfactual Baseline**: Annual excess wealth subtracts the empirical age-graded (`20–24`, `25–29`, `30–34`, `35–39`, `40–45`) net salary of a non-college worker in that country (`nocollege_salary_*_lcu`), where shared single-adult city living expenses cancel out identically:
+     $$\text{ExcessWealth}_{\text{opp}}(t) = -\left(\text{Net Degree Cost} + T_{\text{deg}} \cdot S_{\text{foregone, net}}\right) + \sum_{\tau=1}^{t} \left(S_{\text{grad, net}}(\tau) - S_{\text{no-college, net}}(\text{age}_\tau)\right)$$
+3. **Discounted Real Cash Flows ($r = 3\%$) & Economic ROI Multiple**:
+   - **Real Discounting**: Future savings flows are also tracked at a 3% real discount rate (`cumulative_wealth_discounted_usd`).
+   - **Economic ROI Multiple**: Because total economic investment ($\text{Net Degree Cost} + \text{Foregone Earnings}$) is strictly positive for all 9 institutions even when tuition is waived, $\text{ROI}_u(t) = \text{ExcessWealth}_{\text{opp}}(t) / (\text{Net Cost}_u + \text{Foregone Earnings}_u)$ is well-defined and currency-invariant across all cohorts.
 

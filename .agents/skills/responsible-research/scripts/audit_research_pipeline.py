@@ -228,6 +228,46 @@ def check_plot_documentation():
     return True
 
 
+def check_benchmark_catalog_integrity():
+    print("\n[Check 6] Validating Literature Empirical Benchmark Catalog Integrity...")
+    raw_bench = os.path.join(ROOT, "rawdata", "literature_empirical_benchmarks.csv")
+    ds_bench = os.path.join(ROOT, "datasets", "literature_empirical_benchmarks.csv")
+
+    if not os.path.exists(raw_bench):
+        print(f"  FAIL [Check 6]: Missing {raw_bench}")
+        return False
+
+    with open(raw_bench, "r", encoding="utf-8") as f:
+        reader = list(csv.DictReader(f))
+
+    if len(reader) == 0:
+        print("  FAIL [Check 6]: Benchmark catalog is empty.")
+        return False
+
+    corrupted_pattern = re.compile(r"(?:^|[\s\"\'(]),\d{3}\b")
+    for row in reader:
+        pid = row.get("parameter_id", "").strip()
+        quote = row.get("exakter_quelltext_zitat", "").strip()
+        local_file = row.get("lokale_datei", "").strip().split("#")[0]
+
+        if corrupted_pattern.search(quote):
+            print(f"  FAIL [Check 6]: Truncated currency quote in {pid}: {quote}")
+            return False
+
+        if local_file and not os.path.exists(os.path.join(ROOT, local_file)):
+            print(f"  FAIL [Check 6]: Benchmark {pid} references missing file {local_file}")
+            return False
+
+    if os.path.exists(ds_bench):
+        with open(raw_bench, "rb") as f1, open(ds_bench, "rb") as f2:
+            if f1.read() != f2.read():
+                print("  FAIL [Check 6]: rawdata/ and datasets/ literature_empirical_benchmarks.csv are out of sync.")
+                return False
+
+    print(f"  ✓ Verified integrity, quotes, and primary file references for all {len(reader)} empirical benchmarks.")
+    return True
+
+
 def main():
     print("=" * 70)
     print("RESPONSIBLE RESEARCH: GENERAL PIPELINE AUDIT SUITE")
@@ -238,6 +278,7 @@ def main():
         check_datasets_integrity,
         check_strict_ast_code_contract,
         check_plot_documentation,
+        check_benchmark_catalog_integrity,
     ]
     passed = sum(1 for check in checks if check())
     print("\n" + "=" * 70)

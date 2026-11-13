@@ -1,6 +1,6 @@
 # Systematic Documentation of All Generated Figures (`plots/plot.md`)
 
-This document provides complete methodological provenance, mathematical formulations, empirical validity classifications, and accounting boundaries for all standalone figures and the composite $3 \times 3$ synoptic matrices generated deterministically by `src/modeling.py`.
+This document provides complete methodological provenance, mathematical formulations, empirical validity classifications, and accounting boundaries for all standalone figures, the 4-variant bottom-row comparison matrix, and the composite $3 \times 3$ synoptic matrices generated deterministically by `src/modeling.py`.
 
 ---
 
@@ -8,149 +8,129 @@ This document provides complete methodological provenance, mathematical formulat
 
 | Figure Filename | Panel ID | Semantic Topic | Visual Representation | Methodological Classification |
 | :--- | :---: | :--- | :--- | :--- |
-| [`technical_universities_3x3_en.png`](./technical_universities_3x3_en.png) | **Matrix EN (v1)** | 9-Panel Synoptic Cross-Continental Benchmark (International) | Composite $3 \times 3$ Synthesis Matrix (`figsize=(18, 15)`) | Publication-Grade Synoptic Synthesis |
-| [`technical_universities_3x3_de.png`](./technical_universities_3x3_de.png) | **Matrix DE (v1)** | 9-Panel Synoptische Vergleichsmatrix (Deutsch, International) | Verbundene $3 \times 3$ Synthesematrix (`figsize=(18, 15)`) | Publikationsreife synoptische Synthese |
-| [`technical_universities_3x3_v2_en.png`](./technical_universities_3x3_v2_en.png) | **Matrix EN (v2)** | 9-Panel Synoptic Benchmark (Domestic / In-State Local Tuition Edition) | Composite $3 \times 3$ Synthesis Matrix (`figsize=(18, 15)`) | Publication-Grade Synoptic Synthesis |
-| [`technical_universities_3x3_v2_de.png`](./technical_universities_3x3_v2_de.png) | **Matrix DE (v2)** | 9-Panel Synoptische Vergleichsmatrix (Inlandstarife / In-State Edition) | Verbundene $3 \times 3$ Synthesematrix (`figsize=(18, 15)`) | Publikationsreife synoptische Synthese |
-| [`panel_a_budget_tiers_ppp.png`](./panel_a_budget_tiers_ppp.png) | **Panel A** | Institutional Accounting Boundaries & External Ecosystems | Grouped Bar Chart (Tiers 0, 1, 2 in Million PPP Int'l \$) | Audited Financial Registry Comparison |
+| [`technical_universities_4x3.png`](./technical_universities_4x3.png) | **Matrix 4x3 (Default/EN)** | 12-Panel Synoptic Benchmark (Row 3: Bachelor Intl, Row 4: Master Domestic) | Composite $4 \times 3$ Synthesis Matrix (`figsize=(19, 21.5)`) | Publication-Grade Synoptic Synthesis |
+| [`technical_universities_4x3_en.png`](./technical_universities_4x3_en.png) | **Matrix 4x3 EN (Intl Bac / Dom Mas)** | 12-Panel Synoptic Benchmark (Row 3: Bachelor Intl, Row 4: Master Domestic) | Composite $4 \times 3$ Synthesis Matrix (`figsize=(19, 21.5)`) | Publication-Grade Synoptic Synthesis |
+| [`technical_universities_4x3_de.png`](./technical_universities_4x3_de.png) | **Matrix 4x3 DE (Intl Bac / Dom Mas)** | 12-Panel Synoptische Matrix (Zeile 3: Bachelor Intl, Zeile 4: Master Einheimisch) | Verbundene $4 \times 3$ Synthesematrix (`figsize=(19, 21.5)`) | Publikationsreife synoptische Synthese |
+| [`technical_universities_4x3_domestic_en.png`](./technical_universities_4x3_domestic_en.png) | **Matrix 4x3 Domestic EN** | 12-Panel Synoptic Benchmark (Row 3: Bachelor Domestic, Row 4: Master Domestic) | Composite $4 \times 3$ Synthesis Matrix (`figsize=(19, 21.5)`) | Publication-Grade Synoptic Synthesis |
+| [`technical_universities_4x3_domestic_de.png`](./technical_universities_4x3_domestic_de.png) | **Matrix 4x3 Domestic DE** | 12-Panel Synoptische Matrix (Zeile 3: Bachelor Einheimisch, Zeile 4: Master Einheimisch) | Verbundene $4 \times 3$ Synthesematrix (`figsize=(19, 21.5)`) | Publikationsreife synoptische Synthese |
+| [`technical_universities_3x3_en.png`](./technical_universities_3x3_en.png) | **Matrix EN (Baseline/v1)** | 9-Panel Synoptic Benchmark (Master's International Edition) | Composite $3 \times 3$ Synthesis Matrix (`figsize=(19, 16.5)`) | Publication-Grade Synoptic Synthesis |
+| [`technical_universities_3x3_de.png`](./technical_universities_3x3_de.png) | **Matrix DE (Baseline/v1)** | 9-Panel Synoptische Vergleichsmatrix (Master International) | Verbundene $3 \times 3$ Synthesematrix (`figsize=(19, 16.5)`) | Publikationsreife synoptische Synthese |
+| [`technical_universities_3x3_v1_en.png`](./technical_universities_3x3_v1_en.png) | **Matrix EN (v1)** | 9-Panel Synoptic Benchmark (Master's Non-Native / International) | Composite $3 \times 3$ Synthesis Matrix (`figsize=(19, 16.5)`) | Publication-Grade Synoptic Synthesis |
+| [`technical_universities_3x3_v1_de.png`](./technical_universities_3x3_v1_de.png) | **Matrix DE (v1)** | 9-Panel Synoptische Matrix (Master Nicht-Einheimisch / International) | Verbundene $3 \times 3$ Synthesematrix (`figsize=(19, 16.5)`) | Publikationsreife synoptische Synthese |
+| [`technical_universities_3x3_v2_en.png`](./technical_universities_3x3_v2_en.png) | **Matrix EN (v2)** | 9-Panel Synoptic Benchmark (Master's Native / Domestic / In-State) | Composite $3 \times 3$ Synthesis Matrix (`figsize=(19, 16.5)`) | Publication-Grade Synoptic Synthesis |
+| [`technical_universities_3x3_v2_de.png`](./technical_universities_3x3_v2_de.png) | **Matrix DE (v2)** | 9-Panel Synoptische Matrix (Master Einheimisch / In-State) | Verbundene $3 \times 3$ Synthesematrix (`figsize=(19, 16.5)`) | Publikationsreife synoptische Synthese |
+| [`technical_universities_3x3_v3_en.png`](./technical_universities_3x3_v3_en.png) | **Matrix EN (v3)** | 9-Panel Synoptic Benchmark (Bachelor's Non-Native / International) | Composite $3 \times 3$ Synthesis Matrix (`figsize=(19, 16.5)`) | Publication-Grade Synoptic Synthesis |
+| [`technical_universities_3x3_v3_de.png`](./technical_universities_3x3_v3_de.png) | **Matrix DE (v3)** | 9-Panel Synoptische Matrix (Bachelor Nicht-Einheimisch / International) | Verbundene $3 \times 3$ Synthesematrix (`figsize=(19, 16.5)`) | Publikationsreife synoptische Synthese |
+| [`technical_universities_3x3_v4_en.png`](./technical_universities_3x3_v4_en.png) | **Matrix EN (v4)** | 9-Panel Synoptic Benchmark (Bachelor's Native / Domestic / In-State) | Composite $3 \times 3$ Synthesis Matrix (`figsize=(19, 16.5)`) | Publication-Grade Synoptic Synthesis |
+| [`technical_universities_3x3_v4_de.png`](./technical_universities_3x3_v4_de.png) | **Matrix DE (v4)** | 9-Panel Synoptische Matrix (Bachelor Einheimisch / In-State) | Verbundene $3 \times 3$ Synthesematrix (`figsize=(19, 16.5)`) | Publikationsreife synoptische Synthese |
+| [`bottom_row_4_variants_comparison.png`](./bottom_row_4_variants_comparison.png) | **Bottom-Row Matrix** | 4-Cohort Comparative Synthesis (Master & Bachelor x Native & Non-Native) | $4 \times 3$ Composite Grid (`figsize=(19, 21)`) | Cross-Cohort Comparative Simulation |
+| [`bottom_row_4_variants_comparison_en.png`](./bottom_row_4_variants_comparison_en.png) | **Bottom-Row Matrix (EN)** | 4-Cohort Comparative Synthesis (English) | $4 \times 3$ Composite Grid (`figsize=(19, 21)`) | Cross-Cohort Comparative Simulation |
+| [`bottom_row_4_variants_comparison_de.png`](./bottom_row_4_variants_comparison_de.png) | **Bottom-Row Matrix (DE)** | 4-Kohorten Vergleichende Synthese (Deutsch) | $4 \times 3$ Zusammengesetzte Matrix (`figsize=(19, 21)`) | Cross-Cohort Comparative Simulation |
+| [`panel_a_budget_tiers_ppp.png`](./panel_a_budget_tiers_ppp.png) | **Panel A** | Institutional Operating Budgets (Nominal USD Tiers 0, 1, 2) | 3-Bar Grouped Bar Chart (Tier 0 Gross Operating Exp, Tier 1 Core Academic, Tier 2 Augmented Student-Facing in Nominal USD) | Audited Financial Registry Comparison |
 | [`panel_b_enrollment_fte_supervision.png`](./panel_b_enrollment_fte_supervision.png) | **Panel B** | Student Enrollment Scale & On-Campus Denominators | Grouped Bar Chart (Headcount vs. On-Campus FTE) | Administrative Census & Distance-Cohort Split |
-| [`panel_c_student_facing_budget_per_fte.png`](./panel_c_student_facing_budget_per_fte.png) | **Panel C** | Corrected Student-Facing Budget per On-Campus FTE | Grouped Bar Chart (Nominal USD vs. PPP Int'l \$) | Price-Level Deflated Per-Capita Ratio |
-| [`panel_d_rankings_employability_profile.png`](./panel_d_rankings_employability_profile.png) | **Panel D** | Multi-Pillar Absolute Scores (0–100 Scale) & Global Rankings Profile | Dual-Subplot Architecture: Absolute Cardinal Scores (0–100) vs. The Engineering Pivot (Ranks) | Multi-Source Triangulation & Cardinal Normalization |
+| [`panel_c_student_facing_budget_per_fte.png`](./panel_c_student_facing_budget_per_fte.png) | **Panel C** | Corrected Student-Facing Budget per On-Campus FTE | Grouped Bar Chart (Nominal USD / FTE vs. PPP Int'l \$ / FTE) | Price-Level Deflated Per-Capita Ratio |
+| [`panel_d_rankings_employability_profile.png`](./panel_d_rankings_employability_profile.png) | **Panel D** | Multi-Pillar Absolute Scores & Global Multi-Ranking Profile | Dual-Subplot Architecture: Absolute Cardinal Scores (0–100) vs. Multi-System Global Profile | Multi-Source Triangulation & Cardinal Normalization |
 | [`panel_e_research_efficiency_multidim.png`](./panel_e_research_efficiency_multidim.png) | **Panel E** | Cost-Normalized High-Impact Research Efficiency | Grouped Bar Chart (Top-10% cited papers per \$10M PPP spend) | Field-Normalized Scientific Output Ratio |
-| [`panel_f_2d_efficiency_frontier_surface.png`](./panel_f_2d_efficiency_frontier_surface.png) | **Panel F** | 2D Institutional Efficiency Frontier ($B \times F \to Q$) | 2D Contour Map (`viridis`) with Marginal Conservation | Bivariate Marginal-Preserving Iso-Quality Surface |
-| [`panel_g_masters_cost_lifecycle.png`](./panel_g_masters_cost_lifecycle.png) | **Panel G (v1)** | International Master's Total Upfront Investment | Grouped Bar Chart (Sticker Cost vs. Net Out-of-Pocket) | Total Cost of Ownership (TCO) Model |
-| [`panel_g_masters_cost_lifecycle_v2.png`](./panel_g_masters_cost_lifecycle_v2.png) | **Panel G (v2)** | Domestic / In-State Master's Total Upfront Investment | Grouped Bar Chart (Local Sticker vs. Local Net Out-of-Pocket) | Total Cost of Ownership (TCO) Model |
-| [`panel_h_career_outcome_salaries.png`](./panel_h_career_outcome_salaries.png) | **Panel H** | Early-Career vs. 10-Year Career Outcome Salaries | Grouped Bar Chart (Year 1 Median with Mech-CS range, Year 10 Nom USD, Year 10 PPP Int'l \$) | Longitudinal Career Survey Triangulation |
-| [`panel_i_10y_salary_roi_trajectories.png`](./panel_i_10y_salary_roi_trajectories.png) | **Panel I (v1)** | 10-Year Post-Graduation Cumulative Net Wealth & ROI (International) | Multi-Line Trajectory ($t = -2 \dots +10$ Career Years) with Disciplinary Sensitivity Bands | Longitudinal After-Tax Cash Flow Simulation |
-| [`panel_i_10y_salary_roi_trajectories_v2.png`](./panel_i_10y_salary_roi_trajectories_v2.png) | **Panel I (v2)** | 10-Year Cumulative Net Wealth & ROI (Domestic / In-State Local Tuition) | Multi-Line Trajectory ($t = -2 \dots +10$ Career Years) with Disciplinary Sensitivity Bands | Longitudinal After-Tax Cash Flow Simulation |
-| [`panel_shapley_waterfall_decomposition.png`](./panel_shapley_waterfall_decomposition.png) | **Auxiliary Figure 1** | Path-Independent Causal Waterfall (US Private vs. TUM) | 7-Bar Sequential Waterfall with Shapley Value Attributions ($K! = 120$) | Path-Independent Shapley Permutation Model |
+| [`panel_f_2d_efficiency_frontier_surface.png`](./panel_f_2d_efficiency_frontier_surface.png) | **Panel F** | Undergraduate Admissions Selectivity & Exam Screening | Grouped Bar Chart (Admissions Acceptance Rate % vs. First-Year Exam Screening Attrition %) | Institutional Selectivity & Filtering Paradigm |
+| [`panel_g_masters_cost_lifecycle.png`](./panel_g_masters_cost_lifecycle.png) | **Panel G (Master Intl)** | International Master's Total Upfront Investment | Grouped Bar Chart (Sticker Cost vs. Net Out-of-Pocket) | Total Cost of Ownership (TCO) Model |
+| [`panel_g_masters_cost_lifecycle_v2.png`](./panel_g_masters_cost_lifecycle_v2.png) | **Panel G (Master Domestic)** | Domestic / In-State Master's Total Upfront Investment | Grouped Bar Chart (Local Sticker vs. Local Net Out-of-Pocket) | Total Cost of Ownership (TCO) Model |
+| [`panel_g_bachelors_cost_lifecycle.png`](./panel_g_bachelors_cost_lifecycle.png) | **Panel G (Bachelor Intl)** | International Bachelor's Total Upfront Investment | Grouped Bar Chart (Sticker Cost vs. Net Out-of-Pocket) | Total Cost of Ownership (TCO) Model |
+| [`panel_g_bachelors_cost_lifecycle_v2.png`](./panel_g_bachelors_cost_lifecycle_v2.png) | **Panel G (Bachelor Domestic)** | Domestic / In-State Bachelor's Total Upfront Investment | Grouped Bar Chart (Local Sticker vs. Local Net Out-of-Pocket) | Total Cost of Ownership (TCO) Model |
+| [`panel_h_career_outcome_salaries.png`](./panel_h_career_outcome_salaries.png) | **Panel H (Master)** | Early-Career, 10-Year & 20-Year Master's Career Outcome Salaries | Grouped Bar Chart (Year 1 Starting, Year 10 Mid-Career, Year 20 Senior Nom USD & PPP Int'l \$) | Longitudinal Career Survey Triangulation |
+| [`panel_h_career_outcome_salaries_bachelors.png`](./panel_h_career_outcome_salaries_bachelors.png) | **Panel H (Bachelor)** | Early-Career, 10-Year & 20-Year Bachelor's Career Outcome Salaries | Grouped Bar Chart (Year 1 Starting, Year 10 Mid-Career, Year 20 Senior Nom USD & PPP Int'l \$) | Longitudinal Career Survey Triangulation |
+| [`panel_i_10y_salary_roi_trajectories.png`](./panel_i_10y_salary_roi_trajectories.png) | **Panel I (Master Intl)** | 20-Year Career ROI Multiple & Excess Wealth vs. No-College Baseline (Master Intl) | Multi-Line Trajectory (ROI Multiple x & +\$ Excess Wealth) with MechEng-to-CS/AI Band | Longitudinal After-Tax Cash Flow Simulation |
+| [`panel_i_10y_salary_roi_trajectories_v2.png`](./panel_i_10y_salary_roi_trajectories_v2.png) | **Panel I (Master Domestic)** | 20-Year Career ROI Multiple & Excess Wealth vs. No-College Baseline (Master Domestic) | Multi-Line Trajectory (ROI Multiple x & +\$ Excess Wealth) with MechEng-to-CS/AI Band | Longitudinal After-Tax Cash Flow Simulation |
+| [`panel_i_10y_salary_roi_trajectories_bachelors.png`](./panel_i_10y_salary_roi_trajectories_bachelors.png) | **Panel I (Bachelor Intl)** | 20-Year Career ROI Multiple & Excess Wealth vs. No-College Baseline (Bachelor Intl) | Multi-Line Trajectory (ROI Multiple x & +\$ Excess Wealth) with MechEng-to-CS/AI Band | Longitudinal After-Tax Cash Flow Simulation |
+| [`panel_i_10y_salary_roi_trajectories_bachelors_v2.png`](./panel_i_10y_salary_roi_trajectories_bachelors_v2.png) | **Panel I (Bachelor Domestic)** | 20-Year Career ROI Multiple & Excess Wealth vs. No-College Baseline (Bachelor Domestic) | Multi-Line Trajectory (ROI Multiple x & +\$ Excess Wealth) with MechEng-to-CS/AI Band | Longitudinal After-Tax Cash Flow Simulation |
+| [`panel_shapley_waterfall_decomposition.png`](./panel_shapley_waterfall_decomposition.png) | **Auxiliary Figure 1** | Path-Independent Causal Waterfall (US Private vs. TUM) | 6-Bar Sequential Waterfall with Shapley Value Attributions ($K! = 120$) | Path-Independent Shapley Permutation Model |
 | [`panel_historical_panel_trajectories.png`](./panel_historical_panel_trajectories.png) | **Auxiliary Figure 2** | 15-Year Longitudinal Trajectory: Real Budget per FTE | Multi-Line Trajectory (2010–2024 Base 2010 = 100.0) | Price-Deflated Longitudinal Panel Index |
 
 ---
 
-## 2. Panel-by-Panel Validity Audit
+## 2. Methodological & Validity Audits
 
-### Panel A: Accounting Boundaries & External Ecosystems (`panel_a_budget_tiers_ppp.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` (columns: `tier0_gross_usd_ppp_m`, `tier1_core_usd_ppp_m`, `tier2_augmented_usd_ppp_m`).
-- **Mathematical Formulation**:
-  $$\text{Tier 0} = \frac{\text{Gross Operating Exp}_{\text{LCU}}}{\text{PPP}_{\text{LCU}}}, \quad \text{Tier 1} = \frac{\text{Gross}_{\text{LCU}} - \text{Hospitals} - \text{FFRDCs}}{\text{PPP}_{\text{LCU}}}, \quad \text{Tier 2} = \text{Tier 1} + \frac{\sum_k (B_k \times w_k)}{\text{PPP}_{\text{LCU}}}$$
-- **Statistical Validity**: Complete Audited Financial Statement (`Amtliche_Registerstatistik`).
-- **Key Insight**: Caltech's gross spend drops by 74.1% and MIT's by 29.8% once non-student FFRDC pass-throughs (JPL and Lincoln Lab) are removed. TUM's core spend drops by 42.0% after stripping the *Klinikum rechts der Isar*, but expands by €419.4M PPP when incorporating the academically integrated Garching and Munich research cluster.
-
-### Panel B: Enrollment Scale & On-Campus Denominators (`panel_b_enrollment_fte_supervision.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` (columns: `enrolled_headcount_total`, `on_campus_fte_students`).
-- **Mathematical Formulation**: $\text{On-Campus FTE} = \text{Total Headcount} - \text{Online Distance Enrollees}$.
-- **Statistical Validity**: Complete Administrative Register (`Amtliche_Registerstatistik`).
-- **Key Insight**: Georgia Tech's headline enrollment of 53,350 students conceals 20,850 online distance Master's students (OMSCS/OMSA/OMSCyber). Comparing on-campus FTEs (30,800) prevents a 40% underestimation of campus instructional resources.
-
-### Panel C: Corrected Student-Facing Budget per On-Campus FTE (`panel_c_student_facing_budget_per_fte.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` (columns: `tier2_per_fte_usd_nom`, `tier2_per_fte_usd_ppp`).
-- **Mathematical Formulation**:
-  $$\text{Nominal / FTE} = \frac{\text{Tier 2 Budget}_{\text{USD, Nom}}}{N_{\text{FTE}}}, \quad \text{PPP / FTE} = \frac{\text{Tier 2 Budget}_{\text{USD, PPP}}}{N_{\text{FTE}}}$$
-- **Statistical Validity**: Price-Level Deflated Indicator (`Amtliche_Registerstatistik` + World Bank ICP).
-- **Key Insight**: PPP adjustment significantly enhances the real resource base of Tsinghua ($172k to $191k PPP/FTE), KAIST ($120k to $157k PPP/FTE), and TUM ($31k to $42k PPP/FTE), whereas ETH Zurich's nominal lead is compressed due to Switzerland's high price level index (113.4).
+### The 4 Bottom-Row Lifecycle Variants (`bottom_row_4_variants_comparison.png`)
+To provide comprehensive lifecycle evaluation, the bottom row of the synoptic matrix (Panels G, H, I) is modeled and rendered across a full $2 \times 2$ factorial design:
+1. **Master's Degree — International (Non-Native)**: Overseas tuition rates and living expenses with baseline fellowships and graduate student employment (RA/TA/HiWi).
+2. **Master's Degree — Domestic / In-State (Native)**: In-state statutory tuition discounts (US public), UK Home fees, Swiss domestic matura fees, and German/EU tuition-free status under BayHIG.
+3. **Bachelor's Degree — International (Non-Native)**: 3-year (Imperial, ETH, TUM) and 4-year (MIT, Caltech, GT, Tsinghua, KAIST, NTU) undergraduate degrees under international tuition schedules.
+4. **Bachelor's Degree — Domestic / In-State (Native)**: Undergraduate programs under statutory home student caps (£9,250 in UK, Georgia in-state Zell Miller scholarships, 0 EUR German tuition).
 
 ### Panel D: Global Rankings & Multi-Pillar Absolute Evaluation (`panel_d_rankings_employability_profile.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` (columns: `qs_2025_rank`, `qs_2025_overall_score`, `the_2025_rank`, `the_2025_overall_score`, `the_eng_tech_rank_2025`, `arwu_2024_rank`, `arwu_2024_score`, `qs_employer_reputation_score`, `geurs_employability_rank_2025`).
-- **Mathematical Formulation & Normalization**:
-  $$\text{Academic Score Composite} \in [0, 100], \quad \text{Employer Score} \in [0, 100]$$
-  Evaluates both **absolute cardinal performance** (standardized 0–100 scores across QS, THE, and Employer surveys) and **ordinal rank shifts**:
-  $$\Delta_{\text{Eng-Pivot}} = \text{Median}(\text{Rank}_{\text{QS}}, \text{Rank}_{\text{THE}}, \text{Rank}_{\text{ARWU}}) - \text{Rank}_{\text{THE/QS Eng}}$$
-- **Visual Architecture**:
-  - **3x3 Matrix Edition**: A 3-bar grouped cardinal evaluation per university on an absolute 0–100 scale (QS Overall, THE Overall, QS Employer Reputation) grounded at 0, overlaid with reference benchmarks (Top 10 Tier $\ge 90.0$; World Elite Tier $\ge 80.0$) and exact ordinal rank callouts (`QS | THE | Eng | GEURS`).
-  - **Standalone Edition (`panel_d_rankings_employability_profile.png`)**: A 2-subplot deep-dive architecture:
-    - **Subplot A (Left)**: Multi-Pillar Absolute Cardinal Scores (0–100 Scale) with reference lines.
-    - **Subplot B (Right)**: The Technical University Pivot, contrasting General Comprehensive Ranks (median of QS, THE, ARWU) against Engineering Discipline Ranks (THE/QS Engineering) and Corporate Employability Ranks (GEURS).
-- **Statistical Validity**: Triangulated Global Institutional Audit across 4 independent evaluation systems (Times Higher Education 2025, QS Quacquarelli Symonds 2025, ShanghaiRanking ARWU 2024, and Emerging/GEURS 2025).
-- **Key Analytical Insights**:
-  1. **The Fallacy of Ordinal Ranks**: In ordinal rank space, an institution ranked #28 (TUM) appears far inferior to #1 (MIT). In absolute cardinal score space, TUM scores **84.0 in QS** and **83.5 in THE** (firmly within the World Elite Tier $\ge 80.0$), and achieves **97.2 out of 100 in Employer Reputation**—virtually indistinguishable from MIT's 100.0.
-  2. **The General vs. Engineering Discipline Surge**: General rankings penalize specialized technical universities lacking medical schools, law faculties, or massive humanities divisions. In specialized **Engineering & Technology Discipline Tables**, public technical powerhouses surge dramatically:
-     - **Georgia Tech**: Jumps from general rank #114 (QS) / #175 (ARWU) to **#15 globally** in Engineering (+99 to +160 positions).
-     - **TUM**: Jumps from general rank #28 (QS) / #47 (ARWU) to **#19** (QS Eng) / **#22** (THE Eng) and **#13 globally** in GEURS Employability.
-     - **NTU Singapore**: Jumps from general rank #30 (THE) / #90 (ARWU) to **#15 globally** in Engineering.
-     - **KAIST**: Jumps from general rank #82 (THE) / #250 (ARWU) to **#23 / #35** in Engineering.
-  3. **Employer Reputation Supremacy**: Global corporate recruiters prioritize engineering problem-solving rigor over institutional age or humanities breadth. Public powerhouses (Tsinghua 99.2, Imperial 99.5, TUM 97.2, NTU 96.4, ETH 95.8) form an ultra-elite cluster matching or exceeding private US Ivy institutions.
+- **Input Data**: `datasets/university_master_comparison_2024.csv` across QS 2025, THE 2025, ARWU 2024, US News 2025, THE Engineering 2025, and GEURS Employability 2025.
+- **Overlapping Text Elimination**:
+  1. Expanded headroom to $y \in [0, 140]$.
+  2. Implemented vertical alternation for text badges (`y = max_bar + 2.5` for even index; `y = max_bar + 9.5` for odd index). Adjacent text blocks never collide horizontally.
+  3. Relocated reference line labels to the left margin ($x = -0.45$).
+  4. Positioned legend in upper right over KAIST and Georgia Tech where bars reach only $y \le 78$.
+- **Expanded Global Rankings**: Integrates US News Best Global Universities 2024-2025 (MIT #2, Caltech #7, Georgia Tech #33, Imperial #12, ETH Zurich #28, TUM #28, Tsinghua #16, KAIST #120, NTU #27), QS Engineering, THE Engineering, ARWU, and GEURS.
 
-### Panel E: Cost-Normalized Research Efficiency (`panel_e_research_efficiency_multidim.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` (columns: `annual_top10_pubs_per_10m_ppp_spend`, `top10_pubs_per_10m_ppp_spend`).
-- **Mathematical Formulation**:
-  $$\text{Annual Efficiency} = \frac{(\text{Total Publications}_{2019-2022} / 4.0) \times (\text{PP}_{\text{top 10\%}} / 100)}{\text{Tier 1 Core Academic Budget}_{\text{PPP}} / 10^7}$$
-- **Statistical Validity**: Field-Normalized Bibliometric Impact Ratio (CWTS Leiden Ranking 2024).
-- **Key Insight**: Annualized breakthrough research yields per \$10M PPP core spend are led by NTU (10.36/yr), Imperial (9.55/yr), Caltech (9.08/yr), ETH Zurich (8.45/yr), TUM (7.62/yr), MIT (7.36/yr), Georgia Tech (5.99/yr), KAIST (5.88/yr), and Tsinghua (3.13/yr).
+### Panel F: Admissions Selectivity & First-Year Cohort Attrition (`panel_f_2d_efficiency_frontier_surface.png`)
+- **Input Data**: `datasets/university_master_comparison_2024.csv` across `undergrad_acceptance_rate_pct` and `first_year_screening_attrition_pct`.
+- **The Core Institutional Insight (Gatekeeper vs. Examination Sieve)**:
+  1. **The Anglo-Saxon & Asian "Gatekeeper Model"** (Tsinghua ~0.03% Gaokao / 1.0%, Caltech 3.1%, MIT 4.5%, Imperial 11.2%): Extreme upfront filtering at the admissions gate, with first-year cohort attrition near zero (1%–4%).
+  2. **The Continental European "Examination Sieve Model"** (ETH Zurich 28.0% overall / 100% statutory access for Swiss Matura; TUM 35.0% overall / 45% German/EU): Broad access at the admissions gate, coupled with rigorous first-year academic screening (**ETH Zurich *Basisprüfung* actual 1st-year cohort attrition: 20.0%** [out of 31% total multi-year attrition / 69% BFS Bachelor completion, as 1st-attempt non-passers may repeat once]; **TUM *Grundlagen- und Orientierungsprüfung* [GOP] actual 1st-year cohort attrition: 15.0%** [out of 20.0% total 8-semester EFV exmatriculation]).
+  3. **The State Flagship / Merit Gate Model** (Georgia Tech 16.0%, NTU 17.5%, KAIST 18.0%): In-state / national science quotas with moderate initial selectivity and high retention (3.0%–4.5% 1st-year attrition).
+- **Visual Architecture**: Grouped bar chart comparing Admissions Acceptance Rate (navy `#1F407A`) against First-Year Cohort Attrition (coral `#D9534F`) with annotated percentages and directional callouts. Headroom set to $y \in [0, 44]$ to ensure zero collisions with titles and legends.
 
-### Panel F: 2D Institutional Efficiency Frontier (`panel_f_2d_efficiency_frontier_surface.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` across budget per FTE ($B$), faculty ratio ($F$), and CWTS Leiden Top-10% breakthrough share ($Y$).
-- **Mathematical Formulation**: $\text{Top10\%}(B, F) = c_0 + \beta \ln(B) + \gamma \ln(F)$ fitted via `scipy.optimize.curve_fit` to empirical observations.
-- **Statistical Validity**: Non-linear response surface with verified empirical sample mean preservation ($|\bar{Y}_{\text{obs}} - \bar{Y}_{\text{pred}}| < 10^{-4}$), explicit goodness-of-fit ($R^2 = 0.59$), and runtime-asserted slice-wise marginal conservation ($|\mathbb{E}_F[Q(B, F)] - \hat{Y}(B)| < 10^{-10}$).
-- **Key Insight**: Maps three distinct institutional production regimes: (1) The Boutique Endowment Regime (Caltech & MIT, high spend & high supervision density), (2) The Public Core & Ecosystem Regime (ETH Zurich & Imperial, intermediate scale & strong core state funding), and (3) The Mass-Enrollment Innovation Frontier (TUM, Tsinghua, Georgia Tech, NTU, KAIST, high-throughput efficiency).
+### Zero-Collision 3x3 Matrix Grid Layout
+- Enlarged composite matrix dimensions from `(18, 15)` to `(19, 16.5)`.
+- Increased vertical spacing `hspace` from `0.32` to `0.46`, expanding vertical clearance between rows by over 40%.
+- Adjusted horizontal spacing `wspace=0.28`.
+- Formatted university x-axis tick labels to 30-degree rotation (`ha="right"`, `fontsize=7.5`), ensuring labels never encroach on lower subplot titles.
 
-### Panel G: International Master's Total Upfront Investment (`panel_g_masters_cost_lifecycle.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` (columns: `total_sticker_cost_usd`, `net_total_degree_cost_usd`).
-- **Mathematical Formulation**:
-  $$\text{Sticker Cost} = \text{Tuition}_{\text{Total}} + \text{Living Cost}_{\text{Total}}, \quad \text{Net Cost} = \text{Sticker Cost} - \text{Fellowship/TA/RA/HiWi Offsets}$$
-- **Statistical Validity**: Audited Graduate Admissions & Financial Aid Guidelines.
-- **Key Insight**: KAIST (\$1,683 net) and Tsinghua (\$11,340 net) provide heavily subsidized degrees with stipends. TUM (\$49,123 net over 2 years) and ETH (\$66,892 net over 2 years) remain 40%–60% cheaper than MIT (\$117,490 net) and Caltech (\$106,575 net).
+### 12-Panel Composite Matrix ($4 \times 3$ Synoptic Matrix Architecture)
+- **Matrix Dimensions & Visual Geometry**: Rendered at `figsize=(19, 21.5)` with `hspace=0.46` and `wspace=0.28` (`technical_universities_4x3_en.png`, `technical_universities_4x3_de.png`, `technical_universities_4x3_domestic_en.png`, `technical_universities_4x3_domestic_de.png`).
+- **Row-by-Row Structural Architecture**:
+  - **Row 1 (Macro Financial Framework)**:
+    - **Panel A**: Institutional Accounting Boundaries (Nominal USD Gross/Core/Augmented vs. PPP Int'l \$).
+    - **Panel B**: Student Enrollment Scale & Supervision (Headcount vs On-Campus FTE).
+    - **Panel C**: Student-Facing Operating Resource per On-Campus FTE (Nominal USD vs. PPP Int'l \$).
+  - **Row 2 (Academic Quality & Global Benchmarking)**:
+    - **Panel D**: Multi-Ranking Standing & Absolute Scores (US News, QS, THE, ARWU, GEURS, Leiden).
+    - **Panel E**: Field-Normalized High-Impact Research Efficiency (Top-10% cited papers per \$10M PPP).
+    - **Panel F**: 2D Institutional Efficiency Frontier ($B \times F \to Q$) with Iso-Quality Contours.
+  - **Row 3 (Bachelor's Lifecycle & Net Wealth Dynamics)**:
+    - **Panel G (Bachelor)**: Undergraduate Total Upfront Investment (Sticker vs Net Out-of-Pocket).
+    - **Panel H (Bachelor)**: Undergraduate Early-Career vs 10-Year Career Outcome Salaries.
+    - **Panel I (Bachelor)**: 10-Year Post-Graduation Cumulative Net Wealth & ROI Trajectories.
+  - **Row 4 (Master's Domestic Lifecycle & Net Wealth Dynamics)**:
+    - **Panel G (Master Domestic)**: Domestic Master's Total Upfront Investment (Sticker vs Net Out-of-Pocket).
+    - **Panel H (Master Domestic)**: Domestic Master's Early-Career vs 10-Year Career Outcome Salaries.
+    - **Panel I (Master Domestic)**: 10-Year Post-Graduation Cumulative Net Wealth & ROI Trajectories.
+- **Language & Cohort Variants**:
+  - `technical_universities_4x3_en.png`: English edition with Row 3 International Bachelor and Row 4 Domestic Master.
+  - `technical_universities_4x3_de.png`: German edition with Row 3 International Bachelor and Row 4 Domestic Master.
+  - `technical_universities_4x3_domestic_en.png`: English edition with Row 3 Domestic Bachelor and Row 4 Domestic Master.
+  - `technical_universities_4x3_domestic_de.png`: German edition with Row 3 Domestic Bachelor and Row 4 Domestic Master.
 
-### Panel G (v2): Domestic / In-State Master's Total Upfront Investment (`panel_g_masters_cost_lifecycle_v2.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` (columns: `local_total_sticker_cost_usd`, `local_net_total_degree_cost_usd`).
-- **Mathematical Formulation**:
-  $$\text{Local Sticker Cost} = \text{Local Tuition}_{\text{Total}} + \text{Living Cost}_{\text{Total}}$$
-  $$\text{Local Net Cost} = \text{Local Tuition}_{\text{Total}} \times (1 - \text{Offset Rate}) + \text{Living Cost}_{\text{Total}}$$
-- **Statistical Validity**: Audited Graduate Admissions & Domestic/In-State Bursar Schedules (`Amtliche_Registerstatistik`).
-- **Key Insight**: Incorporating domestic and state-residency tuition subsidies fundamentally alters the European and public US investment equation:
-  - **TUM**: German/EU domestic students pay **€0 tuition**, dropping total net degree expenses from \$49,123 to **\$22,787** (living costs only minus HiWi offset).
-  - **Georgia Tech**: US in-state graduate tuition drops total net degree expenses from \$70,241 down to **\$50,467** (a \$19,774 direct state-taxpayer subsidy).
-  - **Imperial College London**: UK Home fee status drops total net degree costs from \$73,583 to **\$49,139** (a \$24,444 savings).
-  - **ETH Zurich**: Swiss domestic standard fees drop total net degree costs from \$66,892 to **\$45,276** (a \$21,616 savings).
-  - **NTU Singapore**: Singapore citizen subsidized tuition reduces net costs from \$48,041 to **\$22,195**.
-  - **Tsinghua & KAIST**: Domestic academic scholarship fees drop net upfront costs to **\$4,892** and **\$1,100** respectively.
-  - **MIT & Caltech (US Private Endowments)**: Private US institutions offer no in-state residency subsidies; adhering strictly to the user constraint of *no need-based cuts for family income*, their net costs remain invariant at full sticker aid rates (**\$117,490** and **\$106,575**).
+### Panel A: Institutional Operating Budgets (Nominal USD Tiers 0, 1, 2)
+- **3-Bar Clean Nominal Architecture**:
+  1. **Tier 0 Gross Operating Exp (Nominal)**: Total consolidated unadjusted financial budget converted at market FX rates to Nominal USD.
+  2. **Tier 1 Core Academic ex-Hospital/FFRDC**: Core student/academic budget stripped of off-campus clinical hospitals and national defense FFRDCs.
+  3. **Tier 2 Augmented Student-Facing (Ecosystem)**: Attributable co-located partner research institutes (Max Planck, Helmholtz, ETH Domain, Broad, A*STAR).
+- **Narrative Motivation**: Panel A establishes macro-level institutional accounting boundaries cleanly in Nominal USD, highlighting the vast gap between gross statutory figures (inflated by hospitals and defense labs) and core academic operations before PPP deflation is introduced in Panel C.
 
-### Panel H: Early-Career vs. 10-Year Career Outcome Salaries (`panel_h_career_outcome_salaries.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` (columns: `year1_median_salary_usd`, `year1_mech_salary_usd`, `year1_cs_ai_salary_usd`, `year10_median_salary_usd`, `year10_median_salary_ppp`).
-- **Mathematical Formulation**:
-  $$\text{Nominal Disparity Spread} = S_{\text{CS/AI}} - S_{\text{Mech}}, \quad \text{PPP Salary} = \frac{S_{10,\text{Nominal, LCU}}}{\text{PPP}_{\text{LCU}}}$$
-- **Statistical Validity**: Official Graduate Career Registry & Longitudinal Industry Survey Triangulation (Emolument, Payscale, HESA, Hochschul-Bildungs-Report).
-- **Key Insight**: In Nominal USD, US private elites (MIT \$196.9k, Caltech \$192.0k, Georgia Tech \$168.0k) and ETH Zurich (\$153.3k) lead at Year 10. However, in Purchasing Power Parity (PPP Int'l \$), Asian powerhouses Tsinghua (\$260.7k PPP), NTU (\$225.7k PPP), and KAIST (\$197.3k PPP) match or surpass US nominal compensation due to lower domestic price levels. TUM reaches \$134.1k PPP. Disciplinary error bars show CS/AI graduates commanding 15%–30% higher entry packages than Mechanical Engineers across all institutions.
+### Panel C: Corrected Student-Facing Budget per On-Campus FTE (Nominal vs. PPP)
+- **Side-by-Side Dual-Currency Architecture**:
+  - Compares **Nominal USD / FTE** against **PPP Int'l $ / FTE** across all 9 universities without visual clutter or error whiskers.
+  - Demonstrates the dramatic purchasing power divergence between nominal currency exchange rates and real local educational resources in Europe and Asia.
 
-### Panel I: 10-Year Cumulative Post-Tax Wealth & ROI Trajectories (`panel_i_10y_salary_roi_trajectories.png`)
-- **Input Data**: `datasets/masters_10y_cashflow_trajectories.csv` (columns: `career_year`, `cumulative_wealth_funded_usd`, `cumulative_wealth_cs_usd`, `cumulative_wealth_mech_usd`).
-- **Mathematical Formulation**:
-  $$W(t) = -C_{\text{net}} + \sum_{\tau=1}^{t} \max\left(0, S(\tau) \times (1 - \text{Tax Rate}) - L(\tau)\right)$$
-- **Statistical Validity**: Longitudinal Cashflow Simulation based on Official Graduate Employment Registries with CS/AI vs. Mechanical Engineering sensitivity bands.
-- **Key Insight**: Tracks all 9 universities across their regional tech hub placements with shaded disciplinary uncertainty bounds. Break-even occurs fastest at KAIST (1 yr) and Tsinghua (1 yr), followed by MIT (2 yrs), ETH (2 yrs), Georgia Tech (2 yrs), NTU (2 yrs), Caltech (3 yrs), TUM (3 yrs), and Imperial (7 yrs due to London living costs). Over 10 years, MIT (\$718k) and ETH (\$572k) lead in cumulative post-tax savings.
+### Panel G: Undergraduate & Graduate Net Price Modeling (Sticker vs. Net)
+- **Grouped Bar Architecture**:
+  - Displays Total Sticker Cost alongside Net Out-of-Pocket Cost across degree durations.
+  - Reflects the official **U.S. Department of Education IPEDS Median Net Price for Aided Students** for US domestic students, statutory domestic rates for Europe and Asia, and realistic research assistantship (RA/TA/HiWi) tuition remissions.
 
-### Panel I (v2): 10-Year Cumulative Post-Tax Wealth & ROI Trajectories (Domestic / In-State Edition) (`panel_i_10y_salary_roi_trajectories_v2.png`)
-- **Input Data**: `datasets/masters_10y_cashflow_trajectories.csv` (columns: `career_year`, `cumulative_wealth_local_usd`, `cumulative_wealth_local_cs_usd`, `cumulative_wealth_local_mech_usd`).
-- **Mathematical Formulation**:
-  $$W_{\text{local}}(t) = -C_{\text{net, local}} + \sum_{\tau=1}^t \max\left(0, S(\tau)(1 - \text{Tax Rate}) - L(\tau)\right)$$
-- **Statistical Validity**: Longitudinal Cashflow Simulation based on Domestic Tuition Feeregs and Official Graduate Employment Registries with CS/AI vs. Mechanical Engineering sensitivity bands.
-- **Key Insight**: Comparing domestic/in-state student cohorts accelerates break-even points and elevates cumulative career wealth across public institutions:
-  - **Accelerated Break-Even Horizons**:
-    - **Georgia Tech (US In-State)**: Break-even accelerates to **Year 1** (down from Year 2 for out-of-state/international).
-    - **Imperial College London (UK Home)**: Break-even accelerates to **Year 5** (down from Year 7).
-    - **ETH Zurich (Swiss Domestic)**: Break-even accelerates to **Year 1** (down from Year 2).
-    - **TUM (German/EU Tuition-Free)**: Break-even accelerates to **Year 2** (down from Year 3).
-    - **NTU Singapore (Citizen Subsidized)**: Break-even accelerates to **Year 1** (down from Year 2).
-  - **10-Year Cumulative Post-Tax Wealth Expansion**:
-    - **Georgia Tech**: \$685,748 (+\$22,598 vs v1), closely approaching MIT (\$718k) due to low in-state debt and high Atlanta/US tech compensation.
-    - **Imperial**: \$104,085 (+\$24,444 vs v1), overcoming London living cost pressures earlier.
-    - **ETH Zurich**: \$593,558 (+\$21,616 vs v1), ranking second globally only to MIT.
-    - **TUM**: \$220,338 (+\$26,336 vs v1), delivering a clean return on zero-tuition investment.
-    - **NTU Singapore**: \$608,454 (+\$25,846 vs v1), surpassing Caltech (\$605k) in total 10-year accumulated wealth.
-    - **MIT & Caltech**: Invariant at \$718,206 and \$605,039 due to lack of in-state discounts and strict enforcement of the no-income-cuts constraint.
+### Panel H: Career Outcome Salaries (Year 1, Year 10 & Year 20)
+- **4-Bar Architecture**:
+  - Reports **Year 1 Starting Median Salaries (Nominal USD)**, **Year 10 Mid-Career Median (Nominal USD)**, **Year 20 Senior Median (Nominal USD)**, and **Year 20 Senior Median in World Bank PPP International Dollars**.
+  - Provides a clean, direct comparison of entry-level, mid-career, and 20-year senior compensation across all 9 tech hubs.
 
-### Auxiliary Figure 1: Path-Independent Shapley Waterfall Decomposition (`panel_shapley_waterfall_decomposition.png`)
-- **Input Data**: `datasets/university_master_comparison_2024.csv` and `datasets/literature_empirical_benchmarks.csv` (MIT/Caltech average vs. TUM).
-- **Mathematical Formulation**: Evaluates all $5! = 120$ permutation sequences in `compute_shapley_waterfall_decomposition`:
-  $$\phi_j = \frac{1}{K!} \sum_{\pi} \Delta_j(\pi)$$
-- **Statistical Validity**: Path-Independent Causal Decomposition with exact efficiency axiom preservation.
-- **Key Insight**: The raw headline funding gap of \$889k per student collapses by **65.7%** down to \$305k per student: stripping defense FFRDCs accounts for $-\$602\text{k}$ ($\phi$), stripping clinical hospitals adds $+\$19\text{k}$ ($\phi$), crediting external campus research ecosystems adds $+\$11\text{k}$ ($\phi$), German purchasing power parity (PPP) reduces the gap by $-\$11\text{k}$ ($\phi$), and on-campus FTE denominator normalization reduces it by $-\$1.4\text{k}$ ($\phi$).
-
-### Auxiliary Figure 2: 15-Year Longitudinal Trajectory: Real Budget per FTE (`panel_historical_panel_trajectories.png`)
-- **Input Data**: `datasets/historical_panel_harmonized.csv` (columns: `year`, `on_campus_fte`, `real_budget_per_fte_usd_ppp`, `budget_per_fte_index_2010`).
-- **Mathematical Formulation**:
-  $$\text{Index}_{u, t} = \frac{\text{Budget per FTE}_{u, t, \text{PPP}}}{\text{Budget per FTE}_{u, 2010, \text{PPP}}} \times 100.0$$
-- **Statistical Validity**: Multi-Year Price-Level Deflated Panel Index ($2010 = 100.0$).
-- **Key Insight**: Documents divergent institutional trajectories from 2010 to 2024: Tsinghua University experienced unprecedented real per-student resource expansion ($+206\%$ index surge to 306.2), while mass-enrollment European universities maintained steady real support (TUM at 103.3, ETH Zurich at 95.7, and Imperial at 120.3) despite rapid student body expansion. MIT and Caltech expanded per-student resources by $+54\%$ and $+53\%$ respectively.
-
+### Panel I: 20-Year Economic ROI Multiple (Excess Wealth / Total Economic Investment)
+- **Clean 20-Year ROI Trajectory Model & Empirical No-College Counterfactual Baseline**:
+  - **Study vs. Career Living Expenses**: Study years use campus student living budgets (`annual_living_cost_lcu`), whereas post-graduation career years (`1..20`) use each country's **empirical age-graded (`20–45` yr) no-college net salary** (`nocollege_salary_20_24_lcu` .. `nocollege_salary_40_45_lcu`, from BLS/NCES, ONS ASHE/DfE LEO, BFS LSE, Destatis/BA, NBS/NBER, MOEL/KOSTAT, Singapore MOM CLFS) as the counterfactual baseline (where shared single-adult city living expenses cancel out identically between the graduate and non-college counterfactual).
+  - **Foregone Earnings**: Incorporates country-specific **median 20-year-old net wages** (`youth_median_gross_salary_lcu`) during Bachelor study years and Bachelor Year-1 net salaries during Master study years.
+  - The vertical axis plots the **Economic ROI Multiple (x)** of cumulative excess wealth (with 20-year Nominal USD excess wealth `+$X.XXM` / `+$XXXk` annotated on each curve and in the legend) divided by **Total Economic Investment** ($\text{Median Net Cost} + \text{Foregone Net Earnings}$):
+    $$\text{ROI}_u(t) = \frac{\text{Cumulative Excess Wealth}_{u,\text{opp}}(t)}{\text{Median Net Degree Cost}_u + \text{Foregone Net Earnings}_u}$$
+  - **Horizontal Reference Line**: $y = 0.0\text{x}$ marks the **Economic Break-Even Point** (where cumulative post-graduation excess earnings repay both out-of-pocket degree costs and foregone earnings).
+  - **Disciplinary Uncertainty Bands**: The shaded region between Mechanical Engineering and CS/AI illustrates the career ROI dispersion across engineering tracks.

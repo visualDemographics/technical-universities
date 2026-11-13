@@ -1,7 +1,8 @@
-file,url,retrieved,bytes,sha256
-garching_partner_ecosystem_breakdown_2024.csv,https://www.tum.de & https://www.mpg.de / Ecosystem Reports,2026-10-24,5708,981662fee891a440f427b0498e1844ea1a1e0b80555a6fd03cc1de77056cfc45
-historical_enrollment_budget_panel_2010_2024.csv,https://nces.ed.gov/ipeds & https://www.destatis.de / Longitudinal Series,2026-10-24,3156,e660dc8343f140f1f601c368a4537891a78dbd041e0fb11bce312a887e296115
-literature_empirical_benchmarks.csv,https://vpf.mit.edu/treasurers-report & Institutional Financial Reports,2026-10-24,39357,160f27af8f286cefebeb47c077607d60d6ce48a6e6385ab31d55d4c681949aa0
-masters_tuition_living_salary_2025.csv,https://www.topuniversities.com & Official Admissions Schedules,2026-10-24,3471,cb6957605dcd01873b154b1d08ff09945f0b848d6051d9610b76ae39ba07aa7c
-rankings_bibliometrics_employability_2025.csv,https://www.leidenranking.com & https://www.topuniversities.com / QS & Leiden 2024/2025,2026-10-24,1514,0b23275be43ec6cddcb19a729a406b975d5141163d712518d83d47f7f8cad06b
-university_financials_enrollment_2024.csv,https://vpf.mit.edu/treasurers-report & https://finance.caltech.edu & https://controller.gatech.edu,2026-10-24,2963,3e0d4c965e4e5568143f9a621650624d603d8669ce42038159a7acfb0a531993
+file,sha256,bytes
+bachelors_tuition_living_salary_2025.csv,a38fa092e6a4b19c6e82a324f4a3782c6641b85ed8c3342c6e24e26c2090341e,4633
+garching_partner_ecosystem_breakdown_2024.csv,18a4e7a74934f92d304bb9e25f58fd1414b5dbc8fab9dfa815ae9beed783b4e7,6900
+historical_enrollment_budget_panel_2010_2024.csv,e660dc8343f140f1f601c368a4537891a78dbd041e0fb11bce312a887e296115,3156
+literature_empirical_benchmarks.csv,3b28af1832b52d0fcc3cb2922fbb271b9d96774f814e97c5df2b6befaffe2204,80381
+masters_tuition_living_salary_2025.csv,63e560b29e057f51c1cb92f3a06c409e2d20616d45bd0133439bebee1fb80d39,4301
+rankings_bibliometrics_employability_2025.csv,cac50c96ca22eb4a0eb1946657c894bcbfa6d0054433637cec2b6666be7c1711,2353
+university_financials_enrollment_2024.csv,ccd80a672829ff8bd5eaf212bbbc58cde717c4ef7bd5bf6271da01b36517b095,3173
