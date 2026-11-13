@@ -722,9 +722,15 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
     ax.set_xlabel("Career Years (Post-Graduation)" if lang == "en" else "Karrierejahre nach Abschluss", fontsize=8.5 if not is_standalone else 11)
     ax.set_ylabel("Excess Wealth ROI (x of Net Cost + Foregone Wages)" if lang == "en" else "Überrendite-ROI (x aus Nettokosten + Opportunitätslohn)", fontsize=8.0 if not is_standalone else 10.5)
 
-    title_en = f"Panel I: 20-Year Economic ROI Multiple ({cohort_tag})"
-    title_de = f"Panel I: 20-Jahres-Wirtschafts-ROI ({cohort_tag_de})"
-    ax.set_title(title_en if lang == "en" else title_de, fontsize=10 if not is_standalone else 13, fontweight="bold", pad=7)
+    title_en = (
+        f"Panel I: 20-Year Economic ROI Multiple ({cohort_tag})\n"
+        f"(Baseline: Median No-College Salary, Age 20–45)"
+    )
+    title_de = (
+        f"Panel I: 20-Jahres-Wirtschafts-ROI ({cohort_tag_de})\n"
+        f"(Basis: Median-Gehalt ohne Studium, Alter 20–45)"
+    )
+    ax.set_title(title_en if lang == "en" else title_de, fontsize=9.5 if not is_standalone else 12.5, fontweight="bold", pad=6)
     ax.legend(fontsize=5.2 if not is_standalone else 7.5, loc="upper left", ncol=2, framealpha=0.9)
     ax.grid(True, linestyle="--", alpha=0.3)
 
