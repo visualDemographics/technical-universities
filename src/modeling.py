@@ -842,7 +842,16 @@ def render_historical_trajectories(ax, data, lang="en", is_standalone=False):
 def generate_bottom_row_4_variants_comparison(data, lang="en"):
     """Generate 4-row comparative composite of Panels G, H, I across Master & Bachelor x Native & Non-Native."""
     fig, axes = plt.subplots(4, 3, figsize=(19, 21), dpi=300)
-    fig.subplots_adjust(top=0.96, bottom=0.055, left=0.06, right=0.97, hspace=0.44, wspace=0.26)
+    fig.subplots_adjust(top=0.93, bottom=0.055, left=0.06, right=0.97, hspace=0.44, wspace=0.26)
+
+    suptitle_bot = (
+        "Global Technical Universities (2024/2025): 4-Cohort Degree Cost, Career Salary & 20-Year ROI Comparison\n"
+        "Master's & Bachelor's Degrees × International (Non-Native) & Domestic (In-State / Native) Tuition Regimes"
+    ) if lang == "en" else (
+        "Technische Universitäten Weltweit (2024/2025): 4-Kohorten-Vergleich zu Studienkosten, Gehalt & 20-Jahres-ROI\n"
+        "Master- & Bachelor-Abschlüsse × Internationale (Nicht-Einheimische) & Inländische (Einheimische / In-State) Gebühren"
+    )
+    fig.suptitle(suptitle_bot, y=0.976, fontsize=14, fontweight="bold", color="#111111", linespacing=1.35)
 
     # Variant 1: Master's Degree – International (Non-Native)
     render_panel_g(axes[0, 0], data, lang=lang, is_standalone=False, degree_level="Master", tuition_mode="intl")
@@ -914,7 +923,7 @@ def generate_composite_3x3_matrix(data, lang="en", edition="v1"):
     t_mode = "intl" if edition in ["v1", "v3"] else "local"
 
     fig, axes = plt.subplots(3, 3, figsize=(19, 16.5), dpi=300)
-    fig.subplots_adjust(top=0.94, bottom=0.06, left=0.06, right=0.97, hspace=0.46, wspace=0.28)
+    fig.subplots_adjust(top=0.915, bottom=0.06, left=0.06, right=0.97, hspace=0.46, wspace=0.28)
 
     render_panel_a(axes[0, 0], data, lang=lang, is_standalone=False)
     render_panel_b(axes[0, 1], data, lang=lang, is_standalone=False)
@@ -941,6 +950,15 @@ def generate_composite_3x3_matrix(data, lang="en", edition="v1"):
         "v3": "v3 Bachelor International (Nicht-Einheimisch)",
         "v4": "v4 Bachelor Inland (Einheimisch / In-State)",
     }[edition]
+
+    suptitle_3x3 = (
+        "Global Technical Universities Benchmark (2024/2025): Budgets, Research Efficiency & 20-Year Career ROI\n"
+        f"MIT • Caltech • Georgia Tech • Imperial • ETH Zurich • TUM • Tsinghua • KAIST • NTU Singapore  [{edition_desc_en}]"
+    ) if lang == "en" else (
+        "Globaler Vergleich Technischer Universitäten (2024/2025): Budgets, Forschungseffizienz & 20-Jahres-Karriere-ROI\n"
+        f"MIT • Caltech • Georgia Tech • Imperial • ETH Zürich • TUM • Tsinghua • KAIST • NTU Singapur  [{edition_desc_de}]"
+    )
+    fig.suptitle(suptitle_3x3, y=0.972, fontsize=14, fontweight="bold", color="#111111", linespacing=1.35)
 
     footnote = (
         f"Sources: Audited Financial Statements & Factbooks (MIT, Caltech, Georgia Tech, Imperial, ETH Zurich, TUM, Tsinghua, KAIST, NTU 2024); Partner Institutes (Max Planck, Helmholtz, ESO, LRZ, ETH Domain, Broad, Crick, IBS, A*STAR); "
@@ -978,7 +996,7 @@ def generate_composite_4x3_matrix(data, lang="en", bachelor_mode="intl"):
     b_tuition_mode = "intl" if bachelor_mode == "intl" else "local"
 
     fig, axes = plt.subplots(4, 3, figsize=(19, 21.5), dpi=300)
-    fig.subplots_adjust(top=0.95, bottom=0.055, left=0.06, right=0.97, hspace=0.46, wspace=0.28)
+    fig.subplots_adjust(top=0.93, bottom=0.055, left=0.06, right=0.97, hspace=0.46, wspace=0.28)
 
     # Row 1: Macro Budgets & Denominators
     render_panel_a(axes[0, 0], data, lang=lang, is_standalone=False)
@@ -1002,6 +1020,15 @@ def generate_composite_4x3_matrix(data, lang="en", bachelor_mode="intl"):
 
     b_label = "International" if bachelor_mode == "intl" else "Domestic"
     b_label_de = "International" if bachelor_mode == "intl" else "Inland"
+
+    suptitle_4x3 = (
+        "Global Technical Universities Benchmark (2024/2025): Budgets, Research Efficiency & Dual-Cohort 20-Year Career ROI\n"
+        f"MIT • Caltech • Georgia Tech • Imperial • ETH Zurich • TUM • Tsinghua • KAIST • NTU Singapore  [Bachelor ({b_label}) & Master Domestic]"
+    ) if lang == "en" else (
+        "Globaler Vergleich Technischer Universitäten (2024/2025): Budgets, Forschungseffizienz & 20-Jahres-Karriere-ROI\n"
+        f"MIT • Caltech • Georgia Tech • Imperial • ETH Zürich • TUM • Tsinghua • KAIST • NTU Singapur  [Bachelor ({b_label_de}) & Master Inland]"
+    )
+    fig.suptitle(suptitle_4x3, y=0.976, fontsize=14, fontweight="bold", color="#111111", linespacing=1.35)
 
     footnote = (
         f"Sources: Audited Financial Statements & Factbooks (MIT, Caltech, Georgia Tech, Imperial, ETH Zurich, TUM, Tsinghua, KAIST, NTU 2024); Partner Institutes (Max Planck, Helmholtz, ESO, LRZ, ETH Domain, Broad, Crick, IBS, A*STAR); "
