@@ -31,12 +31,12 @@ All metrics are derived deterministically from [`datasets/university_master_comp
 | **MIT** | US | **11,886** | **$3,219.0M** | **$299,845** | **#2** (#3) | **#1** (#1) | **#1** | **24.8%** | **7.36 / yr** (29.4 cum) | **$117,490** | **+$1.71M** (`6.3x`) | **4 yrs** |
 | **Caltech** | US | **2,400** | **$914.2M** | **$394,250** | **#7** (#7) | **#10** (#9) | **#2** | **22.9%** | **9.08 / yr** (36.3 cum) | **$106,575** | **+$1.57M** (`7.2x`) | **4 yrs** |
 | **Georgia Tech** | US | **30,800** | **$1,799.8M** | **$60,465** | **#40** (#15) | **#114** (#21) | **#54** | **13.3%** | **5.99 / yr** (23.9 cum) | **$70,241** | **+$1.43M** (`8.0x`) | **3 yrs** |
-| **Imperial** | EU | **22,400** | **$2,008.8M** | **$98,011** | **#9** (#12) | **#2** (#7) | **#10** | **17.4%** | **9.55 / yr** (38.2 cum) | **$73,583** | **+$655k** (`6.2x`) | **5 yrs** |
+| **Imperial** | EU | **22,400** | **$2,008.8M** | **$98,011** | **#9** (#12) | **#2** (#7) | **#10** | **17.4%** | **9.55 / yr** (38.2 cum) | **$73,583** | **+$715k** (`6.8x`) | **5 yrs** |
 | **ETH Zurich** | EU | **25,800** | **$2,026.0M** | **$91,204** | **#11** (#10) | **#7** (#6) | **#17** | **18.6%** | **8.45 / yr** (33.8 cum) | **$66,892** | **+$783k** (`3.7x`) | **7 yrs** |
 | **TUM** | EU | **51,200** | **$1,566.5M** | **$42,280** | **#26** (#22) | **#28** (#19) | **#13** | **11.4%** | **7.62 / yr** (30.5 cum) | **$49,123** | **+$403k** (`3.6x`) | **7 yrs** |
 | **Tsinghua** | ASIA | **61,500** | **$10,585.0M** | **$191,191** | **#12** (#13) | **#20** (#12) | **#19** | **16.9%** | **3.13 / yr** (12.5 cum) | **$11,340** | **+$1.58M** (`22.6x`) | **2 yrs** |
 | **KAIST** | ASIA | **12,100** | **$1,454.9M** | **$157,179** | **#82** (#35) | **#53** (#23) | **#78** | **13.8%** | **5.88 / yr** (23.5 cum) | **$1,683** | **+$1.11M** (`15.5x`) | **3 yrs** |
-| **NTU Singapore** | ASIA | **32,800** | **$2,106.2M** | **$70,693** | **#30** (#15) | **#15** (#15) | **#33** | **18.9%** | **10.36 / yr** (41.5 cum) | **$48,041** | **+$1.47M** (`17.0x`) | **3 yrs** |
+| **NTU Singapore** | ASIA | **32,800** | **$2,106.2M** | **$70,693** | **#30** (#15) | **#15** (#15) | **#33** | **18.9%** | **10.36 / yr** (41.5 cum) | **$48,041** | **+$1.58M** (`18.2x`) | **3 yrs** |
 
 ---
 
@@ -85,9 +85,9 @@ Comparing all 4 educational cohorts (Master Intl, Master Domestic, Bachelor Intl
   - **Panel E ([`plots/panel_e_research_efficiency_multidim.png`](./plots/panel_e_research_efficiency_multidim.png))**: Multi-Dimensional Cost-Normalized Research Efficiency (CWTS Leiden Top-10% cited papers per \$10M PPP core academic spend).
   - **Panel F ([`plots/panel_f_2d_efficiency_frontier_surface.png`](./plots/panel_f_2d_efficiency_frontier_surface.png))**: Undergraduate Admissions Selectivity & Screening: Admissions Acceptance Rate (%) vs. First-Year Cohort Attrition (ETH Zurich *Basisprüfung* 1st-year exit 20.0%, TUM *GOP* 1st-year exit 15.0%).
 - **Row 3 / 4 (Student Costs, Careers & Causal Decomposition)**:
-  - **Panel G (Master Intl / Dom; Bachelor Intl / Dom)**: Total Degree Investment (Sticker Price vs. Net Out-of-Pocket after RA/TA/HiWi fellowships).
+  - **Panel G (Master Intl / Dom; Bachelor Intl / Dom)**: Total Degree Investment (`Tuition, Living Costs & Median Degree Duration` — Sticker Price vs. Net Out-of-Pocket after RA/TA/HiWi fellowships).
   - **Panel H (Master / Bachelor)**: Early-Career (Year 1), Mid-Career (Year 10), and Senior (Year 20) Career Outcome Salaries (Nominal USD and Year 20 PPP Int'l \$).
-  - **Panel I (Master Intl / Dom; Bachelor Intl / Dom)**: 20-Year Post-Graduation Economic ROI Multiple & Excess Wealth (`+$X.XXM` / `+$XXXk`) over the empirical age-graded (`20–45` yr) no-college counterfactual baseline, net of study-phase out-of-pocket costs and foregone earnings.
+  - **Panel I (Master Intl / Dom; Bachelor Intl / Dom)**: Fixed Post-Matriculation (`22`-Year Master / `24`-Year Bachelor) Economic ROI Multiple & Excess Wealth (`+$X.XXM` / `+$XXXk`) over the empirical age-graded (`20–45` yr) no-college counterfactual baseline, net of study-phase out-of-pocket costs and foregone earnings.
   - **Auxiliary Figure 1 ([`plots/panel_shapley_waterfall_decomposition.png`](./plots/panel_shapley_waterfall_decomposition.png))**: Path-Independent Shapley Waterfall Decomposition decomposing the apparent MIT/Caltech vs. TUM funding gap across $5! = 120$ permutation paths.
   - **Auxiliary Figure 2 ([`plots/panel_historical_panel_trajectories.png`](./plots/panel_historical_panel_trajectories.png))**: 15-Year Longitudinal Real Core Academic Budget per FTE Trajectories ($2010 = 100.0$).
 
@@ -126,27 +126,43 @@ When measuring field-normalized scientific excellence per dollar spent (CWTS Lei
 - **KAIST**: **5.88** papers / yr / \$10M PPP (23.5 cumulative 4-yr)
 - **Tsinghua**: **3.13** papers / yr / \$10M PPP (12.5 cumulative 4-yr)
 
-### 6. 20-Year Career Excess Wealth & Economic ROI Multiple: International (v1) vs. Domestic / In-State (v2)
+### 6. Post-Matriculation Career Excess Wealth & Economic ROI Multiple: Master (22-Yr) & Bachelor (24-Yr)
 
-The lifecycle model evaluates 20-year post-graduation excess wealth over each country's **empirical age-graded (`20–45` yr) no-college counterfactual baseline** (where shared single-adult city living expenses cancel out identically), net of study-phase out-of-pocket degree costs and foregone earnings (`youth_median_gross_salary_lcu` for Bachelor cohorts; Bachelor Year-1 net salary for Master cohorts). Note that for private US endowments (**MIT** and **Caltech**), state-residency subsidies do not exist; per research design constraints (*strictly no means-tested cuts for family income* in Master cohorts), their Master net costs remain invariant, whereas Undergraduate Domestic incorporates IPEDS average grant-aided net prices.
+The lifecycle model evaluates post-matriculation excess wealth (`22` years for Master [ages 22–44] and `24` years for Bachelor [ages 18–42]) over each country's **empirical age-graded (`20–45` yr) no-college counterfactual baseline** (where shared single-adult city living expenses cancel out identically), net of study-phase out-of-pocket degree costs and foregone earnings (`youth_median_gross_salary_lcu` for Bachelor cohorts; Bachelor Year-1 net salary for Master cohorts). Shorter programs (`1.0`-year MSc at Imperial & NTU; `3.0`-year cohort-locked BEng at Imperial vs. `4.0`-year empirical engineering median at ETH Zurich, TUM, US, and Asia) naturally gain a 1-year labor-market head start (`21` career years vs. `20` career years).
 
-| University | Master Duration | Int'l Net Cost (v1) | Domestic Net Cost (v2) | Foregone Wages (Study) | Break-Even (Int'l / Dom) | 20-Yr Excess Wealth Int'l (`ROI`) | 20-Yr Excess Wealth Dom (`ROI`) | Local Tuition Category / Policy |
+#### A. Master's Cohorts (22-Year Post-Matriculation Horizon: v1 International vs. v2 Domestic)
+
+| University | Master Duration | Int'l Net Cost (v1) | Domestic Net Cost (v2) | Foregone Wages (Study) | Career Break-Even (Int'l / Dom) | 22-Yr Excess Wealth Int'l (`ROI`) | 22-Yr Excess Wealth Dom (`ROI`) | Local Tuition Category / Policy |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **MIT** | 2.0 yrs | \$117,490 | \$117,490 | \$152,260 | 4 yrs / 4 yrs | **+\$1.71M** (`6.3x`) | **+\$1.71M** (`6.3x`) | Private Endowment (no in-state discount) |
 | **Caltech** | 1.5 yrs | \$106,575 | \$106,575 | \$111,864 | 4 yrs / 4 yrs | **+\$1.57M** (`7.2x`) | **+\$1.57M** (`7.2x`) | Private Endowment (no in-state discount) |
 | **Georgia Tech** | 1.75 yrs | \$70,241 | \$50,467 | \$107,888 | 3 yrs / 3 yrs | **+\$1.43M** (`8.0x`) | **+\$1.45M** (`9.1x`) | US In-State Tuition (\$14.1k/yr vs \$32.9k out-of-state) |
-| **Imperial** | 1.0 yr | \$73,583 | \$49,139 | \$32,346 | 5 yrs / 5 yrs | **+\$655k** (`6.2x`) | **+\$679k** (`8.3x`) | UK Home Fee Status (£18.5k vs £41.0k international) |
+| **Imperial** | 1.0 yr | \$73,583 | \$49,139 | \$32,346 | 5 yrs / 4 yrs | **+\$715k** (`6.8x`) | **+\$740k** (`9.1x`) | UK Home Fee Status (£18.5k vs £41.0k international) |
 | **ETH Zurich** | 2.0 yrs | \$66,892 | \$45,276 | \$145,600 | 7 yrs / 6 yrs | **+\$783k** (`3.7x`) | **+\$804k** (`4.2x`) | Swiss Domestic Standard Fee (CHF 730/sem vs CHF 2.19k int'l) |
 | **TUM** | 2.0 yrs | \$49,123 | \$22,787 | \$62,215 | 7 yrs / 6 yrs | **+\$403k** (`3.6x`) | **+\$429k** (`5.1x`) | German/EU Domestic Tuition-Free (€0 tuition vs €10k/yr int'l) |
 | **Tsinghua** | 2.0 yrs | \$11,340 | \$4,892 | \$58,757 | 2 yrs / 2 yrs | **+\$1.58M** (`22.6x`) | **+\$1.59M** (`25.0x`) | Chinese Domestic Academic Master Fee (RMB 8k/yr vs RMB 33k/yr) |
 | **KAIST** | 2.0 yrs | \$1,683 | \$1,100 | \$69,843 | 3 yrs / 3 yrs | **+\$1.11M** (`15.5x`) | **+\$1.11M** (`15.6x`) | Korean National Scholarship (100% tuition waiver) |
-| **NTU Singapore** | 1.0 yr | \$48,041 | \$22,195 | \$38,739 | 3 yrs / 3 yrs | **+\$1.47M** (`17.0x`) | **+\$1.50M** (`24.6x`) | Singapore Citizen Subsidized Fee (SGD 14k vs SGD 52k) |
+| **NTU Singapore** | 1.0 yr | \$48,041 | \$22,195 | \$38,739 | 3 yrs / 3 yrs | **+\$1.58M** (`18.2x`) | **+\$1.60M** (`26.3x`) | Singapore Citizen Subsidized Fee (SGD 14k vs SGD 52k) |
 
-Key Insights from 20-Year Excess Wealth & Age-Graded No-College Counterfactual Modeling:
-- **TUM's German/EU Tuition-Free Policy**: Slashes net out-of-pocket costs by **53.6%** (from \$49.1k down to \$22.8k), lifting the 20-year Economic ROI multiple from **`3.6x` to `5.1x`** (`+\$429k` excess wealth over a German *Berufsausbildung* earner).
-- **Georgia Tech's In-State Advantage**: Reduces net out-of-pocket cost to \$50.5k (`\$158.4k` total economic investment including foregone wages), achieving a **3-year break-even** and **`9.1x` (`+\$1.45M`)** 20-year excess wealth—the highest ROI multiple among all US institutions.
-- **Imperial UK Home Fee**: Raises the 20-year ROI multiple from **`6.2x` (`+\$655k`)** to **`8.3x` (`+\$679k`)** over UK non-graduate earnings (`DfE/IFS LEO RR1642`).
-- **ETH Zurich vs. Swiss Apprenticeship (*Berufslehre*) Baseline**: Because Switzerland's vocational *Berufslehre* path yields high median earnings (`CHF 62.4k–85.0k/yr`), ETH Zurich's 20-year excess wealth over no-college is **`+\$783k` (`3.7x` Intl) / `+\$804k` (`4.2x` Domestic)**, while still ranking #1 in Europe in absolute post-tax dollar excess wealth.
+#### B. Bachelor's Cohorts (24-Year Post-Matriculation Horizon: v3 International vs. v4 Domestic)
+
+| University | Median Duration | Int'l Net Cost (v3) | Domestic Net Cost (v4) | Foregone Wages (Study) | Career Break-Even (Int'l / Dom) | 24-Yr Excess Wealth Int'l (`ROI`) | 24-Yr Excess Wealth Dom (`ROI`) | Empirical Duration & Aid Provenance |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **MIT** | 4.0 yrs | \$290,888 | \$89,600 | \$107,127 | 7 yrs / 4 yrs | **+\$1.40M** (`3.5x`) | **+\$1.61M** (`8.2x`) | 4.0-yr median; IPEDS aided net price \$22.4k/yr |
+| **Caltech** | 4.0 yrs | \$323,096 | \$102,000 | \$102,273 | 7 yrs / 4 yrs | **+\$1.25M** (`2.9x`) | **+\$1.47M** (`7.2x`) | 4.0-yr median; IPEDS aided net price \$25.5k/yr |
+| **Georgia Tech** | 4.0 yrs | \$199,846 | \$66,000 | \$110,849 | 7 yrs / 5 yrs | **+\$1.15M** (`3.7x`) | **+\$1.28M** (`7.3x`) | 4.0-yr median (4.5-yr mean); Zell Miller \$16.5k/yr net |
+| **Imperial** | 3.0 yrs | \$236,469 | \$104,202 | \$60,256 | 12 yrs / 8 yrs | **+\$445k** (`1.5x`) | **+\$578k** (`3.5x`) | 3.0-yr cohort-locked BEng; £9,250 Home cap + Bursary |
+| **ETH Zurich** | 4.0 yrs | \$125,800 | \$107,540 | \$239,622 | 11 yrs / 11 yrs | **+\$501k** (`1.4x`) | **+\$519k** (`1.5x`) | 4.0-yr (8 sem) empirical engineering median; CHF 30.70/hr TA |
+| **TUM** | 4.0 yrs | \$77,991 | \$52,585 | \$101,535 | 11 yrs / 10 yrs | **+\$274k** (`1.5x`) | **+\$300k** (`1.9x`) | 4.0-yr (8.0 sem) empirical median (*TUM in Zahlen*); €0 EU fee |
+| **Tsinghua** | 4.0 yrs | \$27,516 | \$14,814 | \$29,158 | 3 yrs / 2 yrs | **+\$1.35M** (`23.9x`) | **+\$1.37M** (`31.1x`) | 4.0-yr cohort (>90% on-time); RMB 5k/yr domestic STEM |
+| **KAIST** | 4.0 yrs | \$2,816 | \$2,816 | \$62,183 | 3 yrs / 3 yrs | **+\$951k** (`14.6x`) | **+\$951k** (`14.6x`) | 4.0-yr cohort; 100% tuition waiver (GPA $\ge 2.7$) + stipend |
+| **NTU Singapore** | 4.0 yrs | \$141,159 | \$57,582 | \$84,367 | 7 yrs / 5 yrs | **+\$1.14M** (`5.0x`) | **+\$1.22M** (`8.6x`) | 4.0-yr Direct Honours BEng; MOE Tuition Grant (Citizen) |
+
+Key Insights from Post-Matriculation Excess Wealth & Age-Graded No-College Counterfactual Modeling:
+- **TUM's German/EU Tuition-Free Policy & Empirical 8-Semester BSc Duration**: In Master's cohorts, tuition-free status slashes net out-of-pocket costs by **53.6%** (from \$49.1k down to \$22.8k), lifting the 22-year ROI multiple from **`3.6x` to `5.1x`** (`+\$429k`). In Bachelor's cohorts, accounting for the empirical 8.0-semester (`4.0`-yr) engineering median duration (*TUM in Zahlen 2023/24* p. 32) yields **`1.5x` (`+\$274k` Intl) to `1.9x` (`+\$300k` Domestic)** over a German *Berufsausbildung* earner.
+- **Georgia Tech's In-State Advantage**: Reduces Master net out-of-pocket cost to \$50.5k (`\$158.4k` total economic investment including foregone wages), achieving a **3-year career break-even** and **`9.1x` (`+\$1.45M`)** 22-year excess wealth—the highest Master ROI multiple among all US institutions.
+- **Imperial UK Home Fee & 1-Yr MSc / 3-Yr BEng Head Start**: With 21 career years inside the fixed 22-year Master window (and 24-year Bachelor window), UK Home fee status raises Imperial's Master ROI multiple from **`6.8x` (`+\$715k`)** to **`9.1x` (`+\$740k`)** and Bachelor ROI from **`1.5x` (`+\$445k`)** to **`3.5x` (`+\$578k`)** over UK non-graduate earnings (`DfE/IFS LEO RR1642`).
+- **ETH Zurich vs. Swiss Apprenticeship (*Berufslehre*) Baseline**: Because Switzerland's vocational *Berufslehre* path yields high median earnings (`CHF 63.0k–79.8k/yr`), ETH Zurich's 4-year Bachelor opportunity cost (`\$239.6k` foregone wages) and 2-year Master opportunity cost (`\$145.6k`) are the highest globally; even so, ETH generates **`+\$783k–\$804k` (Master)** and **`+\$501k–\$519k` (Bachelor)** in post-tax nominal dollar excess wealth.
 
 ### 7. Path-Independent Shapley Waterfall Results
 Evaluating all $5! = 120$ permutation sequences in `compute_shapley_waterfall_decomposition` reveals that the raw headline funding gap of **\$889k / student** between US private endowments (MIT & Caltech average) and TUM collapses by **65.7%** down to **\$305k / student**:
@@ -166,11 +182,13 @@ Evaluating all $5! = 120$ permutation sequences in `compute_shapley_waterfall_de
 │   ├── description.md       # Exact scope, entities, and research dimensions
 │   └── hypothesis.md        # Falsifiable hypotheses (H1 Garching/FFRDC, H2 Scale, H3 ROI)
 ├── literature/
-│   ├── literature.md        # Primary reference catalog, DOIs, and 39 verified PDFs
+│   ├── literature.md        # Primary reference catalog, DOIs, and 47 verified PDFs
 │   ├── *_Financial_Statements_2024.pdf / *_Budget_2024.pdf
 │   ├── *_20yr_Career_Salaries_Primary_2025.pdf & *_Extract_2025.pdf
-│   ├── *_20yr_Alumni_Salaries_Extract_2025.pdf (9 universities)
+│   ├── *_20yr_Alumni_Salaries_Extract_2025.pdf (9 universities + US/DE/Asia syntheses)
 │   ├── *_NoCollege_20_45_Salaries_Extract_2025.pdf (7 countries)
+│   ├── *_Student_Financing_Extract_2025.pdf & *_Assistantships_Aid_Extract_2025.pdf
+│   ├── CrossNational_Bachelor_Time_To_Degree_Extract_2025.pdf
 │   └── ETH_TUM_FirstYear_Cohort_Attrition_Extract_2025.pdf
 ├── rawdata/
 │   ├── MANIFEST.csv         # Cryptographic SHA-256 provenance manifest (7 raw CSVs)

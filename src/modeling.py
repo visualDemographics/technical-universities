@@ -536,16 +536,32 @@ def render_panel_g(ax, data, lang="en", is_standalone=False, degree_level="Maste
     lbl_sticker = ("Sticker Cost (Tuition + Living)" if tuition_mode == "intl" else "Local Sticker (In-State / Domestic)") if lang == "en" else ("Listenpreis (Studiengebühr + Leben)" if tuition_mode == "intl" else "Inlands-Listenpreis (In-State / Inland)")
     lbl_net = ("Net Cost (ex-RA/TA/HiWi Offsets)" if tuition_mode == "intl" else "Local Net Cost (ex-Fellowships/HiWi)") if lang == "en" else ("Nettokosten (nach RA/TA/HiWi)" if tuition_mode == "intl" else "Inlands-Nettokosten (nach Stipendien/HiWi)")
 
-    ax.bar(x - width/2.0, sticker, width, label=lbl_sticker, color="#D9534F", alpha=0.85)
-    ax.bar(x + width/2.0, net, width, label=lbl_net, color="#0065BD", alpha=0.95)
+    bars_s = ax.bar(x - width/2.0, sticker, width, label=lbl_sticker, color="#D9534F", alpha=0.85)
+    bars_n = ax.bar(x + width/2.0, net, width, label=lbl_net, color="#0065BD", alpha=0.95)
 
+    max_val = max(float(np.max(sticker)), float(np.max(net)))
+    lbl_fs = 5.5 if not is_standalone else 7.8
+    for bar, val in zip(bars_s, sticker):
+        ax.text(bar.get_x() + bar.get_width() / 2.0, val + max_val * 0.015, f"${val:.0f}k",
+                ha="center", va="bottom", fontsize=lbl_fs, color="#A93226", fontweight="bold")
+    for bar, val in zip(bars_n, net):
+        ax.text(bar.get_x() + bar.get_width() / 2.0, val + max_val * 0.015, f"${val:.0f}k",
+                ha="center", va="bottom", fontsize=lbl_fs, color="#004C97", fontweight="bold")
+
+    ax.set_ylim(0, max_val * 1.16)
     ax.set_xticks(x)
     ax.set_xticklabels([u.replace("_", " ") for u in df["university_id"]], rotation=30, ha="right", fontsize=7.5 if not is_standalone else 10)
     ax.set_ylabel("Total Degree Cost ($1,000 USD)" if lang == "en" else "Gesamte Studienkosten (Tsd. USD)", fontsize=8.5 if not is_standalone else 11)
 
-    title_en = f"Panel G: Total Degree Investment ({cohort_tag})"
-    title_de = f"Panel G: Investitionskosten ({cohort_tag_de})"
-    ax.set_title(title_en if lang == "en" else title_de, fontsize=10 if not is_standalone else 13, fontweight="bold", pad=7)
+    title_en = (
+        f"Panel G: Total Degree Investment ({cohort_tag})\n"
+        f"(Tuition, Living Costs & Median Degree Duration)"
+    )
+    title_de = (
+        f"Panel G: Gesamte Studieninvestition ({cohort_tag_de})\n"
+        f"(Studiengebühren, Lebenshaltung & Median-Studiendauer)"
+    )
+    ax.set_title(title_en if lang == "en" else title_de, fontsize=9.2 if not is_standalone else 12.5, fontweight="bold", pad=6)
     ax.legend(fontsize=6.8 if not is_standalone else 9, loc="upper right")
     ax.grid(axis="y", linestyle="--", alpha=0.3)
 
@@ -639,12 +655,15 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
 
     y_max_roi = 24.5
     y_min_roi = -2.0
+    horizon_years = 24 if degree_level == "Bachelor" else 22
+    short_grad = 3 if degree_level == "Bachelor" else 1
+    long_grad = 4 if degree_level == "Bachelor" else 2
     outliers = []
     end_labels = []
 
     for uid in universities:
-        sub = df_traj.loc[(df_traj["university_id"] == uid) & (df_traj["degree_level"] == degree_level)].sort_values("career_year")
-        x_yrs = sub["career_year"].values
+        sub = df_traj.loc[(df_traj["university_id"] == uid) & (df_traj["degree_level"] == degree_level)].sort_values("year_since_matriculation")
+        x_yrs = np.concatenate([[0.0], sub["year_since_matriculation"].values])
 
         row_m = df_master.loc[df_master["university_id"] == uid].iloc[0]
         if degree_level == "Master":
@@ -655,9 +674,9 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
         econ_inv = net_cost + foregone_total
         assert econ_inv > 0.0, f"Economic investment must be positive for {uid}"
 
-        roi_traj = sub[col_wealth].values / econ_inv
-        roi_cs = sub[col_cs].values / econ_inv
-        roi_mech = sub[col_mech].values / econ_inv
+        roi_traj = np.concatenate([[0.0], sub[col_wealth].values / econ_inv])
+        roi_cs = np.concatenate([[0.0], sub[col_cs].values / econ_inv])
+        roi_mech = np.concatenate([[0.0], sub[col_mech].values / econ_inv])
         roi_20y = float(roi_traj[-1])
         wealth_20y_usd = float(sub[col_wealth].iloc[-1])
         if abs(wealth_20y_usd) >= 1e6:
@@ -688,7 +707,7 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
             alpha=0.90,
         )
 
-    # De-overlap endpoint excess wealth labels at x = 20.3
+    # De-overlap endpoint excess wealth labels at x = horizon_years + 0.25
     end_labels.sort(key=lambda d: d["y"])
     min_gap = 0.85
     for i in range(1, len(end_labels)):
@@ -696,7 +715,7 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
             end_labels[i]["y"] = end_labels[i - 1]["y"] + min_gap
     for d in end_labels:
         ax.text(
-            20.25,
+            horizon_years + 0.25,
             min(d["y"], y_max_roi - 0.4),
             d["txt"],
             ha="left",
@@ -709,25 +728,29 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
     if outliers:
         outlier_hdr = "Above axis:" if lang == "en" else "Über Skala:"
         outlier_txt = f"{outlier_hdr} " + " | ".join(outliers)
-        ax.text(19.7, y_max_roi - 0.8, outlier_txt, ha="right", va="top",
+        ax.text(horizon_years - 0.3, y_max_roi - 0.8, outlier_txt, ha="right", va="top",
                 fontsize=5.2 if not is_standalone else 7.2, color="#333333",
                 bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="#cccccc", alpha=0.90))
 
     ax.axhline(0, color="gray", linestyle="--", alpha=0.6)
-    study_span = -2 if degree_level == "Master" else -4
-    ax.axvspan(study_span, 0, color="lightgray", alpha=0.25, label=f"{degree_level} Study Phase" if lang == "en" else f"{degree_level}-Studienphase")
+    ax.axvspan(0, short_grad, color="lightgray", alpha=0.25,
+               label=f"{short_grad}-Yr Study Phase" if lang == "en" else f"{short_grad}-J. Studienphase")
+    ax.axvspan(short_grad, long_grad, color="#d9d9d9", alpha=0.35, hatch="///", edgecolor="#b0b0b0",
+               label=f"{long_grad}th Study Yr (4-Yr BSc)" if (lang == "en" and degree_level == "Bachelor") else (
+                   f"2nd Study Yr (2-Yr MS)" if lang == "en" else f"{long_grad}. Studienjahr"))
+    ax.axvline(short_grad, color="#777777", linestyle=":", lw=0.9, alpha=0.7)
 
-    ax.set_xlim(study_span - 0.6, 23.3)
+    ax.set_xlim(-0.5, horizon_years + 3.3)
     ax.set_ylim(y_min_roi, y_max_roi)
-    ax.set_xlabel("Career Years (Post-Graduation)" if lang == "en" else "Karrierejahre nach Abschluss", fontsize=8.5 if not is_standalone else 11)
+    ax.set_xlabel("Years Since Matriculation (Fixed Age Horizon)" if lang == "en" else "Jahre seit Studienbeginn (Fester Altershorizont)", fontsize=8.5 if not is_standalone else 11)
     ax.set_ylabel("Excess Wealth ROI (x of Net Cost + Foregone Wages)" if lang == "en" else "Überrendite-ROI (x aus Nettokosten + Opportunitätslohn)", fontsize=8.0 if not is_standalone else 10.5)
 
     title_en = (
-        f"Panel I: 20-Year Economic ROI Multiple ({cohort_tag})\n"
+        f"Panel I: {horizon_years}-Year Post-Matriculation ROI ({cohort_tag})\n"
         f"(Baseline: Median No-College Salary, Age 20–45)"
     )
     title_de = (
-        f"Panel I: 20-Jahres-Wirtschafts-ROI ({cohort_tag_de})\n"
+        f"Panel I: {horizon_years}-Jahres-ROI ab Studienbeginn ({cohort_tag_de})\n"
         f"(Basis: Median-Gehalt ohne Studium, Alter 20–45)"
     )
     ax.set_title(title_en if lang == "en" else title_de, fontsize=9.5 if not is_standalone else 12.5, fontweight="bold", pad=6)
@@ -892,11 +915,11 @@ def generate_bottom_row_4_variants_comparison(data, lang="en"):
                                   color="#1F407A")
 
     footnote_bottom = (
-        "Sources: Tuition & Financial Aid Schedules (MIT, Caltech, Georgia Tech, Imperial, ETH Zurich, TUM, Tsinghua, KAIST, NTU 2024/25; US IPEDS Net Price);\n"
+        "Sources: Tuition, Assistantship & Aid Schedules (MIT OGE/RAS, Caltech, Georgia Tech GRA/GTA, Imperial Bursary, ETH Hilfsassistierende, TUM HiWi/DZHW 22. Sozialerhebung, Tsinghua, KAIST, NTU 2024/25; US IPEDS);\n"
         "Career & Age-20–45 No-College Wage Registries: US NSF NSCG / BLS CPS / Payscale / College Scorecard; UK DfE LEO / IFS RR1642 / ONS ASHE;\n"
         "Swiss BFS LSE 2024 / KOF Study 152 / STV; German BA Entgeltatlas / Destatis / VDI; China NBS / Beijing HRSS / NBER WP 29523; Korea MOEL / KOSTAT / STEPI; Singapore MOM CLFS 2025 / MOE GES."
     ) if lang == "en" else (
-        "Quellen: Studiengebühren- & Förderstatistiken (MIT, Caltech, Georgia Tech, Imperial, ETH Zürich, TUM, Tsinghua, KAIST, NTU 2024/25; US IPEDS Net Price);\n"
+        "Quellen: Studiengebühren-, HiWi- & Förderstatistiken (MIT OGE/RAS, Caltech, Georgia Tech GRA/GTA, Imperial Bursary, ETH Hilfsassistierende, TUM HiWi/DZHW 22. Sozialerhebung, Tsinghua, KAIST, NTU 2024/25; US IPEDS);\n"
         "Karriere- & Nicht-Akademiker-Lohnregister (20–45 J.): US NSF NSCG / BLS CPS / Payscale / College Scorecard; UK DfE LEO / IFS RR1642 / ONS ASHE;\n"
         "BFS LSE 2024 / KOF-Studie 152 / STV; BA Entgeltatlas / Destatis / VDI; China NBS / Beijing HRSS / NBER WP 29523; Korea MOEL / KOSTAT / STEPI; Singapur MOM CLFS 2025 / MOE GES."
     )
@@ -961,12 +984,12 @@ def generate_composite_3x3_matrix(data, lang="en", edition="v1"):
     fig.suptitle(suptitle_3x3, y=0.972, fontsize=14, fontweight="bold", color="#111111", linespacing=1.35)
 
     footnote = (
-        f"Sources: Audited Financial Statements & Factbooks (MIT, Caltech, Georgia Tech, Imperial, ETH Zurich, TUM, Tsinghua, KAIST, NTU 2024); Partner Institutes (Max Planck, Helmholtz, ESO, LRZ, ETH Domain, Broad, Crick, IBS, A*STAR); "
+        f"Sources: Audited Financial Statements & Aid/HiWi Schedules (MIT OGE/RAS, Caltech, GT GRA/GTA, Imperial Bursary, ETH Hilfsassistierende, TUM HiWi/DZHW 22. Sozialerhebung, Tsinghua, KAIST, NTU 2024); Partner Institutes; "
         f"World Bank ICP (PA.NUS.PPP); Rankings & Bibliometrics (QS 2025, THE 2025, ARWU 2024, US News 2025, GEURS 2025, CWTS Leiden 2024);\n"
         f"Admissions & 1-Yr Attrition (US CDS, UCAS/HESA, BFS/ETH Rectorate, TUM EFV); Career & Age-20–45 No-College Wage Registries (US NSF NSCG/BLS/Payscale, UK DfE LEO/IFS RR1642/ONS ASHE, "
         f"Swiss BFS LSE/KOF 152, German BA Entgeltatlas/Destatis, China NBS/Beijing HRSS/NBER WP29523, Korea MOEL/KOSTAT/STEPI, Singapore MOM CLFS/MOE GES) [{edition_desc_en}]."
     ) if lang == "en" else (
-        f"Quellen: Geprüfte Jahresabschlüsse & Hochschulstatistiken (MIT, Caltech, Georgia Tech, Imperial, ETH Zürich, TUM, Tsinghua, KAIST, NTU 2024); Partnerinstitute (Max-Planck, Helmholtz, ESO, LRZ, ETH-Bereich, Broad, Crick, IBS, A*STAR); "
+        f"Quellen: Geprüfte Jahresabschlüsse & Förder-/HiWi-Statistiken (MIT OGE/RAS, Caltech, GT GRA/GTA, Imperial Bursary, ETH Hilfsassistierende, TUM HiWi/DZHW 22. Sozialerhebung, Tsinghua, KAIST, NTU 2024); Partnerinstitute; "
         f"Weltbank KKP (PA.NUS.PPP); Rankings & Bibliometrie (QS 2025, THE 2025, ARWU 2024, US News 2025, GEURS 2025, CWTS Leiden 2024);\n"
         f"Zulassung & 1.-Jahr-Abbruch (US CDS, UCAS/HESA, BFS/ETH-Rektorat, TUM EFV); Karriere- & Nicht-Akademiker-Lohnregister 20–45 J. (US NSF NSCG/BLS/Payscale, UK DfE LEO/IFS RR1642/ONS ASHE, "
         f"BFS LSE/KOF 152, BA Entgeltatlas/Destatis, China NBS/Beijing HRSS/NBER WP29523, Korea MOEL/KOSTAT/STEPI, Singapur MOM CLFS/MOE GES) [{edition_desc_de}]."
@@ -1031,13 +1054,13 @@ def generate_composite_4x3_matrix(data, lang="en", bachelor_mode="intl"):
     fig.suptitle(suptitle_4x3, y=0.976, fontsize=14, fontweight="bold", color="#111111", linespacing=1.35)
 
     footnote = (
-        f"Sources: Audited Financial Statements & Factbooks (MIT, Caltech, Georgia Tech, Imperial, ETH Zurich, TUM, Tsinghua, KAIST, NTU 2024); Partner Institutes (Max Planck, Helmholtz, ESO, LRZ, ETH Domain, Broad, Crick, IBS, A*STAR); "
+        f"Sources: Audited Financial Statements & Aid/HiWi Schedules (MIT OGE/RAS, Caltech, GT GRA/GTA, Imperial Bursary, ETH Hilfsassistierende, TUM HiWi/DZHW 22. Sozialerhebung, Tsinghua, KAIST, NTU 2024); Partner Institutes; "
         f"World Bank ICP (PA.NUS.PPP); Rankings & Bibliometrics (QS 2025, THE 2025, ARWU 2024, US News 2025, GEURS 2025, CWTS Leiden 2024);\n"
         f"Admissions & 1-Yr Attrition (US CDS, UCAS/HESA, BFS/ETH Rectorate, TUM EFV); Career & Age-20–45 No-College Wage Registries (US NSF NSCG/BLS/Payscale, UK DfE LEO/IFS RR1642/ONS ASHE, "
         f"Swiss BFS LSE/KOF 152, German BA Entgeltatlas/Destatis, China NBS/Beijing HRSS/NBER WP29523, Korea MOEL/KOSTAT/STEPI, Singapore MOM CLFS/MOE GES) "
         f"[4x3 Synoptic Matrix: Bachelor ({b_label}) & Master Domestic]."
     ) if lang == "en" else (
-        f"Quellen: Geprüfte Jahresabschlüsse & Hochschulstatistiken (MIT, Caltech, Georgia Tech, Imperial, ETH Zürich, TUM, Tsinghua, KAIST, NTU 2024); Partnerinstitute (Max-Planck, Helmholtz, ESO, LRZ, ETH-Bereich, Broad, Crick, IBS, A*STAR); "
+        f"Quellen: Geprüfte Jahresabschlüsse & Förder-/HiWi-Statistiken (MIT OGE/RAS, Caltech, GT GRA/GTA, Imperial Bursary, ETH Hilfsassistierende, TUM HiWi/DZHW 22. Sozialerhebung, Tsinghua, KAIST, NTU 2024); Partnerinstitute; "
         f"Weltbank KKP (PA.NUS.PPP); Rankings & Bibliometrie (QS 2025, THE 2025, ARWU 2024, US News 2025, GEURS 2025, CWTS Leiden 2024);\n"
         f"Zulassung & 1.-Jahr-Abbruch (US CDS, UCAS/HESA, BFS/ETH-Rektorat, TUM EFV); Karriere- & Nicht-Akademiker-Lohnregister 20–45 J. (US NSF NSCG/BLS/Payscale, UK DfE LEO/IFS RR1642/ONS ASHE, "
         f"BFS LSE/KOF 152, BA Entgeltatlas/Destatis, China NBS/Beijing HRSS/NBER WP29523, Korea MOEL/KOSTAT/STEPI, Singapur MOM CLFS/MOE GES) "

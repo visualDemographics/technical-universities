@@ -53,8 +53,8 @@ This document provides complete methodological provenance, mathematical formulat
 To provide comprehensive lifecycle evaluation, the bottom row of the synoptic matrix (Panels G, H, I) is modeled and rendered across a full $2 \times 2$ factorial design:
 1. **Master's Degree — International (Non-Native)**: Overseas tuition rates and living expenses with baseline fellowships and graduate student employment (RA/TA/HiWi).
 2. **Master's Degree — Domestic / In-State (Native)**: In-state statutory tuition discounts (US public), UK Home fees, Swiss domestic matura fees, and German/EU tuition-free status under BayHIG.
-3. **Bachelor's Degree — International (Non-Native)**: 3-year (Imperial, ETH, TUM) and 4-year (MIT, Caltech, GT, Tsinghua, KAIST, NTU) undergraduate degrees under international tuition schedules.
-4. **Bachelor's Degree — Domestic / In-State (Native)**: Undergraduate programs under statutory home student caps (£9,250 in UK, Georgia in-state Zell Miller scholarships, 0 EUR German tuition).
+3. **Bachelor's Degree — International (Non-Native)**: 3-year (Imperial BEng cohort-locked) and 4-year empirical engineering median duration (MIT, Caltech, GT, ETH Zurich, TUM, Tsinghua, KAIST, NTU) undergraduate degrees under international tuition schedules.
+4. **Bachelor's Degree — Domestic / In-State (Native)**: Undergraduate programs under statutory home student caps (£9,250 in UK, Georgia in-state Zell Miller scholarships, CHF 1,460/yr Swiss domestic, 0 EUR German tuition).
 
 ### Panel D: Global Rankings & Multi-Pillar Absolute Evaluation (`panel_d_rankings_employability_profile.png`)
 - **Input Data**: `datasets/university_master_comparison_2024.csv` across QS 2025, THE 2025, ARWU 2024, US News 2025, THE Engineering 2025, and GEURS Employability 2025.
@@ -89,15 +89,15 @@ To provide comprehensive lifecycle evaluation, the bottom row of the synoptic ma
   - **Row 2 (Academic Quality & Global Benchmarking)**:
     - **Panel D**: Multi-Ranking Standing & Absolute Scores (US News, QS, THE, ARWU, GEURS, Leiden).
     - **Panel E**: Field-Normalized High-Impact Research Efficiency (Top-10% cited papers per \$10M PPP).
-    - **Panel F**: 2D Institutional Efficiency Frontier ($B \times F \to Q$) with Iso-Quality Contours.
+    - **Panel F**: Undergraduate Admissions Selectivity & First-Year Exam Screening Attrition (%).
   - **Row 3 (Bachelor's Lifecycle & Net Wealth Dynamics)**:
-    - **Panel G (Bachelor)**: Undergraduate Total Upfront Investment (Sticker vs Net Out-of-Pocket).
-    - **Panel H (Bachelor)**: Undergraduate Early-Career vs 10-Year Career Outcome Salaries.
-    - **Panel I (Bachelor)**: 10-Year Post-Graduation Cumulative Net Wealth & ROI Trajectories.
+    - **Panel G (Bachelor)**: Undergraduate Total Degree Investment (Tuition, Living Costs & Median Degree Duration).
+    - **Panel H (Bachelor)**: Undergraduate Early-Career, 10-Year & 20-Year Career Outcome Salaries.
+    - **Panel I (Bachelor)**: 24-Year Post-Matriculation Economic ROI Multiple & Excess Wealth Trajectories.
   - **Row 4 (Master's Domestic Lifecycle & Net Wealth Dynamics)**:
-    - **Panel G (Master Domestic)**: Domestic Master's Total Upfront Investment (Sticker vs Net Out-of-Pocket).
-    - **Panel H (Master Domestic)**: Domestic Master's Early-Career vs 10-Year Career Outcome Salaries.
-    - **Panel I (Master Domestic)**: 10-Year Post-Graduation Cumulative Net Wealth & ROI Trajectories.
+    - **Panel G (Master Domestic)**: Domestic Master's Total Degree Investment (Tuition, Living Costs & Median Degree Duration).
+    - **Panel H (Master Domestic)**: Master's Early-Career, 10-Year & 20-Year Career Outcome Salaries.
+    - **Panel I (Master Domestic)**: 22-Year Post-Matriculation Economic ROI Multiple & Excess Wealth Trajectories.
 - **Language & Cohort Variants**:
   - `technical_universities_4x3_en.png`: English edition with Row 3 International Bachelor and Row 4 Domestic Master.
   - `technical_universities_4x3_de.png`: German edition with Row 3 International Bachelor and Row 4 Domestic Master.
@@ -116,19 +116,20 @@ To provide comprehensive lifecycle evaluation, the bottom row of the synoptic ma
   - Compares **Nominal USD / FTE** against **PPP Int'l $ / FTE** across all 9 universities without visual clutter or error whiskers.
   - Demonstrates the dramatic purchasing power divergence between nominal currency exchange rates and real local educational resources in Europe and Asia.
 
-### Panel G: Undergraduate & Graduate Net Price Modeling (Sticker vs. Net)
-- **Grouped Bar Architecture**:
-  - Displays Total Sticker Cost alongside Net Out-of-Pocket Cost across degree durations.
-  - Reflects the official **U.S. Department of Education IPEDS Median Net Price for Aided Students** for US domestic students, statutory domestic rates for Europe and Asia, and realistic research assistantship (RA/TA/HiWi) tuition remissions.
+### Panel G: Undergraduate & Graduate Net Price Modeling (`Tuition, Living Costs & Median Degree Duration`)
+- **Grouped Bar Architecture & Explicit Subtitle**:
+  - Displays Total Sticker Cost alongside Net Out-of-Pocket Cost across empirical median degree durations (`1.0 yr` Imperial/NTU MSc vs. `1.5–2.0 yr` other MS; `3.0 yr` Imperial BEng vs. `4.0 yr` empirical engineering median for ETH Zurich, TUM, US, and Asia), titled `Panel G: Total Degree Investment (<Cohort>)\n(Tuition, Living Costs & Median Degree Duration)`.
+  - Reflects the official **U.S. Department of Education IPEDS Median Net Price for Aided Students** for US domestic students, statutory domestic rates for Europe and Asia, and verified research/teaching assistantship (RA/TA/HiWi) and bursary offsets (`€12.41–€14.00/hr` TUM HiWi, `CHF 30.70/hr` ETH *Hilfsassistierende*, Imperial Bursary).
 
 ### Panel H: Career Outcome Salaries (Year 1, Year 10 & Year 20)
 - **4-Bar Architecture**:
   - Reports **Year 1 Starting Median Salaries (Nominal USD)**, **Year 10 Mid-Career Median (Nominal USD)**, **Year 20 Senior Median (Nominal USD)**, and **Year 20 Senior Median in World Bank PPP International Dollars**.
   - Provides a clean, direct comparison of entry-level, mid-career, and 20-year senior compensation across all 9 tech hubs.
 
-### Panel I: 20-Year Economic ROI Multiple (Excess Wealth / Total Economic Investment)
-- **Clean 20-Year ROI Trajectory Model & Empirical No-College Counterfactual Baseline**:
-  - **Study vs. Career Living Expenses**: Study years use campus student living budgets (`annual_living_cost_lcu`), whereas post-graduation career years (`1..20`) use each country's **empirical age-graded (`20–45` yr) no-college net salary** (`nocollege_salary_20_24_lcu` .. `nocollege_salary_40_45_lcu`, from BLS/NCES, ONS ASHE/DfE LEO, BFS LSE, Destatis/BA, NBS/NBER, MOEL/KOSTAT, Singapore MOM CLFS) as the counterfactual baseline (where shared single-adult city living expenses cancel out identically between the graduate and non-college counterfactual).
+### Panel I: Post-Matriculation Economic ROI Multiple (Excess Wealth / Total Economic Investment)
+- **Fixed Post-Matriculation Horizon (`22`-Yr Master / `24`-Yr Bachelor) & Empirical No-College Counterfactual Baseline**:
+  - Plotted on `year_since_matriculation` (`0..22` for Master [ages 22–44] and `0..24` for Bachelor [ages 18–42]), with shaded `Study Phase` (`1-Yr` / `3-Yr`) and hatched additional study year (`2nd Study Yr (2-Yr MS)` / `4th Study Yr (4-Yr BSc)`), so 1-year MSc (Imperial, NTU) and 3-year BEng (Imperial) naturally capture their 1-year labor-market head start (`21` career years vs. `20` career years).
+  - **Study vs. Career Living Expenses**: Study years use campus student living budgets (`annual_living_cost_lcu`), whereas post-graduation career years use each country's **empirical age-graded (`20–45` yr) no-college net salary** (`nocollege_salary_20_24_lcu` .. `nocollege_salary_40_45_lcu`, from BLS/NCES, ONS ASHE/DfE LEO, BFS LSE, Destatis/BA, NBS/NBER, MOEL/KOSTAT, Singapore MOM CLFS) as the counterfactual baseline (where shared single-adult city living expenses cancel out identically between the graduate and non-college counterfactual).
   - **Foregone Earnings**: Incorporates country-specific **median 20-year-old net wages** (`youth_median_gross_salary_lcu`) during Bachelor study years and Bachelor Year-1 net salaries during Master study years.
   - The vertical axis plots the **Economic ROI Multiple (x)** of cumulative excess wealth (with 20-year Nominal USD excess wealth `+$X.XXM` / `+$XXXk` annotated on each curve and in the legend) divided by **Total Economic Investment** ($\text{Median Net Cost} + \text{Foregone Net Earnings}$):
     $$\text{ROI}_u(t) = \frac{\text{Cumulative Excess Wealth}_{u,\text{opp}}(t)}{\text{Median Net Degree Cost}_u + \text{Foregone Net Earnings}_u}$$

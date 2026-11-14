@@ -633,16 +633,21 @@ def prepare_masters_cashflow_trajectories():
             cum_excess_local = cum_net_wealth_local - total_opp_cost
             cum_excess_local_cs = cum_net_wealth_local_cs - total_opp_cost
             cum_excess_local_mech = cum_net_wealth_local_mech - total_opp_cost
-            start_age = 22 if deg_level == "Bachelor" else 24
 
-            for yr in range(1, 21):
+            # Fixed post-matriculation horizon (24 yrs for Bachelor: Age 18->42; 22 yrs for Master: Age 22->44)
+            # 3-yr Bachelor (21 career yrs) & 1-yr Master (21 career yrs) gain a 1-yr labor-market head start.
+            horizon_years = 24 if deg_level == "Bachelor" else 22
+            n_career_years = horizon_years - len(study_years)
+            start_age = (18 + len(study_years)) if deg_level == "Bachelor" else (22 + len(study_years))
+
+            for yr in range(1, n_career_years + 1):
                 if yr <= 10:
                     progress = (yr - 1.0) / 9.0
                     gross_salary = y1_salary_usd + progress * (y10_salary_usd - y1_salary_usd)
                     gross_cs = y1_cs_usd + progress * (y10_salary_usd * cs_ratio - y1_cs_usd)
                     gross_mech = y1_mech_usd + progress * (y10_salary_usd * mech_ratio - y1_mech_usd)
                 else:
-                    progress = (yr - 10.0) / 10.0
+                    progress = min(yr - 10.0, 10.0) / 10.0
                     gross_salary = y10_salary_usd + progress * (y20_salary_usd - y10_salary_usd)
                     gross_cs = y10_salary_usd * cs_ratio + progress * (y20_salary_usd * cs_ratio - y10_salary_usd * cs_ratio)
                     gross_mech = y10_salary_usd * mech_ratio + progress * (y20_salary_usd * mech_ratio - y10_salary_usd * mech_ratio)

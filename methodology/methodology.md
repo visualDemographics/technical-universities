@@ -147,15 +147,20 @@ The decomposition reveals that the raw headline gap of **\$889k / student** is r
 ## 6. International & Domestic Degree Total Cost & 20-Year Career ROI Model
 
 We model the complete financial lifecycle across all 4 cohorts (Master & Bachelor $\times$ International & Domestic/In-State):
-1. **Tuition & Living Costs over Program Duration**:
-   - Imperial College London: 1.0-year MSc (£41k tuition + £22.7k living = **\$73.6k USD** net out-of-pocket).
-   - NTU Singapore: 1.0-year MSc (S\$52k tuition + S\$17.4k living = **\$48.0k USD** net out-of-pocket).
-   - ETH Zurich: 2.0-year MSc (CHF 8.76k tuition + CHF 52.8k living = **\$66.9k USD** net out-of-pocket).
-   - TUM: 2.0-year MSc (€20k tuition + €32.4k living = **\$49.1k USD** net out-of-pocket).
-   - MIT: 2.0-year SM (\$128.6k tuition + \$53.2k living = **\$181.8k USD** sticker, **\$117.5k USD** net).
-   - KAIST: 2.0-year MS (100% tuition waiver + living stipend = **\$1.7k USD** net out-of-pocket).
-2. **20-Year Post-Tax Career Trajectory & Age-Graded No-College Counterfactual**:
-   - Piecewise linear interpolation from Year 1 starting salary to Year 10 mid-career salary (`yr = 1..10`) and from Year 10 to Year 20 senior salary (`yr = 10..20`), net of effective single-earner income tax and employee social security contributions.
+1. **Tuition, Living Costs & Empirical Median Degree Durations**:
+   - **Master's Cohorts**:
+     - Imperial College London: 1.0-year MSc (£41k tuition + £22.7k living = **\$73.6k USD** net int'l / **\$49.1k USD** net domestic).
+     - NTU Singapore: 1.0-year MSc (S\$52k tuition + S\$17.4k living = **\$48.0k USD** net int'l / **\$22.2k USD** net domestic).
+     - ETH Zurich: 2.0-year MSc (CHF 8.76k tuition + CHF 52.8k living = **\$66.9k USD** net int'l / **\$45.3k USD** net domestic).
+     - TUM: 2.0-year MSc (€20k tuition + €32.4k living = **\$49.1k USD** net int'l / **\$22.8k USD** net domestic).
+     - MIT: 2.0-year SM (\$128.6k tuition + \$53.2k living = **\$181.8k USD** sticker, **\$117.5k USD** net).
+     - KAIST: 2.0-year MS (100% tuition waiver + living stipend = **\$1.7k USD** net int'l / **\$1.1k USD** net domestic).
+   - **Bachelor's Empirical Median Durations & Student Employment Offsets**:
+     - While statutory Bologna *Regelstudienzeit* is 6 semesters (3.0 years), official statistical registries (*TUM in Zahlen 2023/24* p. 32 across Informatics, EE, and Mechanical Engineering; Destatis Fachserie 11; Swiss BFS LABB) show an empirical engineering median duration of **8.0 semesters (4.0 years)** at **TUM** and **ETH Zurich**, matching the 4.0-year median of US (**MIT, Caltech, Georgia Tech**) and Asian (**Tsinghua, KAIST, NTU**) programs. Only **Imperial College London (BEng)** operates a strictly cohort-locked **3.0-year** undergraduate progression.
+     - Net degree costs incorporate verified institutional student employment and grant schedules (`€12.41–€14.00/hr` TUM HiWi / TV-Stud and `€538/mo` minijob ceiling; `CHF 30.70/hr` ETH *Hilfsassistierende*; Imperial Bursary & London Living Wage casual work; US IPEDS aided net prices & GRA/GTA waivers; Asian national scholarship remissions).
+2. **Fixed Post-Matriculation Horizons & Age-Graded No-College Counterfactual**:
+   - Trajectories are evaluated over a fixed post-matriculation window: **22 years for Master** (ages 22$\to$44, giving 1-yr MSc graduates 21 career years vs. 20 career years for 2-yr MS) and **24 years for Bachelor** (ages 18$\to$42, giving 3-yr Imperial BEng graduates 21 career years vs. 20 career years for 4-yr BSc), capturing the 1-year labor-market head start on the horizontal `year_since_matriculation` axis.
+   - Piecewise linear interpolation from Year 1 starting salary to Year 10 mid-career salary (`yr = 1..10`) and from Year 10 to Year 20 senior salary (`yr = 10..20/21`), net of effective single-earner income tax and employee social security contributions.
    - **Study-Phase Foregone Earnings**: Country-specific median 20-year-old net salary (`youth_median_gross_salary_lcu`) for Bachelor cohorts and Bachelor Year-1 net salary for Master cohorts.
    - **Career-Phase Counterfactual Baseline**: Annual excess wealth subtracts the empirical age-graded (`20–24`, `25–29`, `30–34`, `35–39`, `40–45`) net salary of a non-college worker in that country (`nocollege_salary_*_lcu`), where shared single-adult city living expenses cancel out identically:
      $$\text{ExcessWealth}_{\text{opp}}(t) = -\left(\text{Net Degree Cost} + T_{\text{deg}} \cdot S_{\text{foregone, net}}\right) + \sum_{\tau=1}^{t} \left(S_{\text{grad, net}}(\tau) - S_{\text{no-college, net}}(\text{age}_\tau)\right)$$
