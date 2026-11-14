@@ -514,6 +514,7 @@ def prepare_masters_cashflow_trajectories():
             youth_opp_cost_ann_usd = float(r["youth_median_gross_salary_lcu"]) * fx * (1.0 - tax)
             total_net_degree_cost_usd = float(r[col_net_intl]) * fx
             total_sticker_cost_usd = (float(r[col_tuition_intl]) + float(r["total_degree_living_cost_lcu"])) * fx
+            total_living_cost_usd = float(r["total_degree_living_cost_lcu"]) * fx
 
             ann_net_cost_usd = total_net_degree_cost_usd / dur
             ann_sticker_cost_usd = total_sticker_cost_usd / dur
@@ -522,6 +523,14 @@ def prepare_masters_cashflow_trajectories():
             total_local_sticker_cost_usd = (float(r[col_tuition_local]) + float(r["total_degree_living_cost_lcu"])) * fx
             ann_net_cost_local_usd = total_net_degree_cost_local_usd / dur
             ann_sticker_cost_local_usd = total_local_sticker_cost_usd / dur
+
+            # Option 1 (Symmetric living-cost cancellation for Economic ROI):
+            # Living costs are paid whether studying or working, so excess-wealth study cost is
+            # Net Tuition after Offsets (total_net_degree_cost - total_living_cost; negative if stipends > tuition).
+            net_tuition_cost_usd = total_net_degree_cost_usd - total_living_cost_usd
+            net_tuition_cost_local_usd = total_net_degree_cost_local_usd - total_living_cost_usd
+            ann_net_tuition_usd = net_tuition_cost_usd / dur
+            ann_net_tuition_local_usd = net_tuition_cost_local_usd / dur
 
             y1_salary_usd = float(r["year1_median_salary_lcu"]) * fx
             y1_cs_usd = float(r["year1_cs_ai_salary_lcu"]) * fx
@@ -536,25 +545,37 @@ def prepare_masters_cashflow_trajectories():
             cum_net_wealth_local = 0.0
             cum_net_wealth_local_cs = 0.0
             cum_net_wealth_local_mech = 0.0
+            cum_net_tuition_intl = 0.0
+            cum_net_tuition_local = 0.0
             cum_discounted_funded = 0.0
             cum_discounted_local = 0.0
 
-            # Opportunity cost benchmark: Bachelor Y1 net salary for Master; country median 20yo net salary for Bachelor
+            # Opportunity cost benchmark: Bachelor Y1 net salary for Master; Associate/Ausbildung net salary for Bachelor
+            # For Bachelor, account for counterfactual training years (e.g. 2yr Associate/HND at 0% pay, 2-2.5yr Abitur-Ausbildung at ~28-33% apprentice pay).
             if deg_level == "Master":
                 b_tax = float(df_bach.loc[df_bach["university_id"] == uid, "effective_tax_ssc_rate_single"].iloc[0])
                 b_y1_gross = float(df_bach.loc[df_bach["university_id"] == uid, "year1_median_salary_lcu"].iloc[0]) * fx
                 opp_cost_ann_usd = b_y1_gross * (1.0 - b_tax)
+                study_years = [1, 2] if dur >= 1.5 else [1]
+                opp_cost_by_year = [
+                    (1.0 if (len(study_years) == 1 or y_study == 1) else (dur - 1.0)) * opp_cost_ann_usd
+                    for y_study in study_years
+                ]
             else:
                 opp_cost_ann_usd = youth_opp_cost_ann_usd
-            total_opp_cost = dur * opp_cost_ann_usd
+                t_train = float(r["counterfactual_training_years"])
+                w_train = float(r["counterfactual_training_wage_share"])
+                study_years = [1, 2, 3] if dur == 3.0 else [1, 2, 3, 4]
+                opp_cost_by_year = []
+                for y_study in study_years:
+                    frac_train = max(0.0, min(1.0, t_train - (y_study - 1.0)))
+                    eff_share = frac_train * w_train + (1.0 - frac_train)
+                    opp_cost_by_year.append(eff_share * opp_cost_ann_usd)
+
+            total_opp_cost = sum(opp_cost_by_year)
             cum_opp_cost_so_far = 0.0
 
-            if deg_level == "Master":
-                study_years = [1, 2] if dur >= 1.5 else [1]
-            else:
-                study_years = [1, 2, 3] if dur == 3.0 else [1, 2, 3, 4]
-
-            for y_study in study_years:
+            for idx_y, y_study in enumerate(study_years):
                 if deg_level == "Master":
                     w_year = 1.0 if (len(study_years) == 1 or y_study == 1) else (dur - 1.0)
                 else:
@@ -573,7 +594,9 @@ def prepare_masters_cashflow_trajectories():
                 cum_net_wealth_local -= ann_net_local_alloc
                 cum_net_wealth_local_cs -= ann_net_local_alloc
                 cum_net_wealth_local_mech -= ann_net_local_alloc
-                cum_opp_cost_so_far += w_year * opp_cost_ann_usd
+                cum_net_tuition_intl -= w_year * ann_net_tuition_usd
+                cum_net_tuition_local -= w_year * ann_net_tuition_local_usd
+                cum_opp_cost_so_far += opp_cost_by_year[idx_y]
 
                 df_study = (1.0 + DISCOUNT_RATE_3PCT) ** (-y_study)
                 cum_discounted_funded -= ann_net_alloc * df_study
@@ -592,21 +615,23 @@ def prepare_masters_cashflow_trajectories():
                     "annual_net_salary_usd": 0.0,
                     "annual_living_expenses_usd": round(ann_living_alloc, 0),
                     "annual_net_cashflow_funded_usd": round(-ann_net_alloc, 0),
+                    "net_tuition_total_usd": round(net_tuition_cost_usd, 0),
+                    "net_tuition_local_total_usd": round(net_tuition_cost_local_usd, 0),
                     "foregone_earnings_total_usd": round(total_opp_cost, 0),
                     "cumulative_wealth_funded_usd": round(cum_net_wealth_funded, 0),
                     "cumulative_wealth_discounted_usd": round(cum_discounted_funded, 0),
-                    "cumulative_wealth_opp_cost_usd": round(cum_net_wealth_funded - cum_opp_cost_so_far, 0),
-                    "cumulative_wealth_opp_cost_cs_usd": round(cum_net_wealth_cs - cum_opp_cost_so_far, 0),
-                    "cumulative_wealth_opp_cost_mech_usd": round(cum_net_wealth_mech - cum_opp_cost_so_far, 0),
+                    "cumulative_wealth_opp_cost_usd": round(cum_net_tuition_intl - cum_opp_cost_so_far, 0),
+                    "cumulative_wealth_opp_cost_cs_usd": round(cum_net_tuition_intl - cum_opp_cost_so_far, 0),
+                    "cumulative_wealth_opp_cost_mech_usd": round(cum_net_tuition_intl - cum_opp_cost_so_far, 0),
                     "cumulative_wealth_sticker_usd": round(cum_net_wealth_sticker, 0),
                     "cumulative_wealth_cs_usd": round(cum_net_wealth_cs, 0),
                     "cumulative_wealth_mech_usd": round(cum_net_wealth_mech, 0),
                     "cumulative_wealth_funded_ppp": round((cum_net_wealth_funded / fx) / ppp, 0),
                     "cumulative_wealth_local_usd": round(cum_net_wealth_local, 0),
                     "cumulative_wealth_local_discounted_usd": round(cum_discounted_local, 0),
-                    "cumulative_wealth_local_opp_cost_usd": round(cum_net_wealth_local - cum_opp_cost_so_far, 0),
-                    "cumulative_wealth_local_opp_cost_cs_usd": round(cum_net_wealth_local_cs - cum_opp_cost_so_far, 0),
-                    "cumulative_wealth_local_opp_cost_mech_usd": round(cum_net_wealth_local_mech - cum_opp_cost_so_far, 0),
+                    "cumulative_wealth_local_opp_cost_usd": round(cum_net_tuition_local - cum_opp_cost_so_far, 0),
+                    "cumulative_wealth_local_opp_cost_cs_usd": round(cum_net_tuition_local - cum_opp_cost_so_far, 0),
+                    "cumulative_wealth_local_opp_cost_mech_usd": round(cum_net_tuition_local - cum_opp_cost_so_far, 0),
                     "cumulative_wealth_local_cs_usd": round(cum_net_wealth_local_cs, 0),
                     "cumulative_wealth_local_mech_usd": round(cum_net_wealth_local_mech, 0),
                     "cumulative_wealth_local_ppp": round((cum_net_wealth_local / fx) / ppp, 0),
@@ -627,12 +652,12 @@ def prepare_masters_cashflow_trajectories():
                 float(r["nocollege_salary_35_39_lcu"]) * fx * (1.0 - tax),
                 float(r["nocollege_salary_40_45_lcu"]) * fx * (1.0 - tax),
             ]
-            cum_excess_funded = cum_net_wealth_funded - total_opp_cost
-            cum_excess_cs = cum_net_wealth_cs - total_opp_cost
-            cum_excess_mech = cum_net_wealth_mech - total_opp_cost
-            cum_excess_local = cum_net_wealth_local - total_opp_cost
-            cum_excess_local_cs = cum_net_wealth_local_cs - total_opp_cost
-            cum_excess_local_mech = cum_net_wealth_local_mech - total_opp_cost
+            cum_excess_funded = cum_net_tuition_intl - total_opp_cost
+            cum_excess_cs = cum_net_tuition_intl - total_opp_cost
+            cum_excess_mech = cum_net_tuition_intl - total_opp_cost
+            cum_excess_local = cum_net_tuition_local - total_opp_cost
+            cum_excess_local_cs = cum_net_tuition_local - total_opp_cost
+            cum_excess_local_mech = cum_net_tuition_local - total_opp_cost
 
             # Fixed post-matriculation horizon (24 yrs for Bachelor: Age 18->42; 22 yrs for Master: Age 22->44)
             # 3-yr Bachelor (21 career yrs) & 1-yr Master (21 career yrs) gain a 1-yr labor-market head start.
@@ -710,6 +735,8 @@ def prepare_masters_cashflow_trajectories():
                     "annual_net_salary_usd": round(net_salary, 0),
                     "annual_living_expenses_usd": round(career_living_cost, 0),
                     "annual_net_cashflow_funded_usd": round(annual_net_savings, 0),
+                    "net_tuition_total_usd": round(net_tuition_cost_usd, 0),
+                    "net_tuition_local_total_usd": round(net_tuition_cost_local_usd, 0),
                     "foregone_earnings_total_usd": round(total_opp_cost, 0),
                     "cumulative_wealth_funded_usd": round(cum_net_wealth_funded, 0),
                     "cumulative_wealth_discounted_usd": round(cum_discounted_funded, 0),

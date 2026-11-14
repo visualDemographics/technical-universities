@@ -32,6 +32,7 @@ Your role is to execute deep, verifiable web searches and primary source retriev
 
 2. **Primary Artifact Retrieval & Anti-Corruption Verification**:
    - When downloading a PDF to `literature/` or a primary dataset (`.csv`, `.xlsx`, `.xml`) to `rawdata/`, **NEVER** assume a `curl` or `wget` succeeded based on HTTP 200 alone (publisher paywalls frequently return HTML landing pages with `.pdf` extensions).
+   - **Primary Sources Only (No Synthesized Extract PDFs)**: **NEVER** build, render, or compile a PDF from scraped web text, search summaries, or JSON specs. Building PDFs of scraped information is **non-conforming to contract**. Always retrieve unmodified primary-source files directly from the issuing institution, publisher, or statistical agency (or report the exact block/URL if gated).
    - **Mandatory Verification**:
      - **For `.pdf` files**: Verify the file starts with the `%PDF-` magic header, is `>= 1000` bytes, and parses cleanly via `pypdf`.
      - **For `.xml` / PMC files**: Verify the `<article-title>` and `<surname>` tags inside the XML actually match the target study authors and topic (preventing PMC ID collisions).

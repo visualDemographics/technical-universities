@@ -197,7 +197,8 @@ $$\text{goal} \longrightarrow \text{literature} \longrightarrow \text{rawdata} \
 When working with data scraped from the web (HTML tables, APIs, online CSV/Excel extracts) or extracted from PDF reports (statistical yearbooks, audited university budgets, academic papers):
 
 ### 1. Ingestion Protocol:
-* **Preserve Untouched Originals**: Store original scraped files or downloaded PDFs in `rawdata/` (or `literature/`). Never modify them directly.
+* **Primary Sources Only (No Synthesized Extract PDFs)**: **NEVER** build, render, or compile new PDFs out of scraped web text, search summaries, or JSON specs to place in `literature/` or `rawdata/`. Building PDFs of scraped information is **non-conforming to contract**; always store unmodified primary-source documents directly from the issuing institution, publisher, or statistical agency.
+* **Preserve Untouched Originals**: Store original primary files or downloaded PDFs in `rawdata/` (or `literature/`). Never modify them directly.
 * **Cryptographic Provenance**: Record the download URL, timestamp, and SHA-256 hash in `rawdata.md` or `raw/MANIFEST.csv`.
 * **Zero Hardcoded Magic Numbers**: Never paste numbers extracted from a website or PDF into `src/modeling.py`.
 * **The Benchmark Catalog (`literature_empirical_benchmarks.csv`)**: Any isolated empirical value (odds ratios, peak historical output, institutional budget pass-through, survey regression slope) must be recorded in `datasets/literature_empirical_benchmarks.csv` with exact page numbers, table coordinates, and verbatim quotes.

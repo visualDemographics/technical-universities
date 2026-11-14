@@ -356,12 +356,13 @@ def main():
         sys.exit(0 if res["status"] == "PASS" else 1)
 
     if args.create_extract_pdf:
-        if not args.out:
-            print("ERROR: --out <pdf_path> is required with --create-extract-pdf")
-            sys.exit(1)
-        res = create_extract_pdf(args.create_extract_pdf, args.out)
-        print(json.dumps(res, indent=2, ensure_ascii=False))
-        sys.exit(0 if res["status"] == "PASS" else 1)
+        print(
+            "ERROR: --create-extract-pdf is disabled and non-conforming to the primary-source contract. "
+            "Building PDFs from scraped information is forbidden; always download unmodified primary-source "
+            "PDFs/CSVs/XLSXs directly from the issuing institution, publisher, or statistical agency.",
+            file=sys.stderr,
+        )
+        sys.exit(2)
 
     if args.sync_manifest:
         ok = sync_manifest(update=args.update)

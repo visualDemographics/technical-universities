@@ -41,7 +41,7 @@ Your mission is to coordinate high-throughput, parallelized web search and prima
 
 3. **Reactive Synchronization (Zero Polling)**:
    - After launching the $K$ parallel workers, **end your turn immediately** (call no more tools). The messaging system will automatically wake you up as worker messages arrive.
-   - If a worker reports a paywall or corrupted PDF header (`<!DOC`), either instruct that worker via `send_message` to query an alternative open-access repository (PubMed Central, institutional handle, SSB/WODC/Destatis direct download) or generate a verified bibliographic/table extract PDF via `.agents/skills/parallel-literature-harvester/scripts/verify_and_register_harvest.py --create-extract-pdf`.
+   - If a worker reports a paywall or corrupted PDF header (`<!DOC`), instruct that worker via `send_message` to query an alternative open-access primary repository (PubMed Central, institutional handle, SSB/WODC/Destatis direct download) or report the exact blocked URL to the user. **Never** build or compile synthetic extract PDFs from scraped web text or JSON specs — only unmodified primary sources conform to contract.
 
 4. **Atomic Consolidation & Cryptographic Verification**:
    - Once all workers have reported back, run `.venv/bin/python3 .agents/skills/parallel-literature-harvester/scripts/verify_and_register_harvest.py --sync-manifest` to:

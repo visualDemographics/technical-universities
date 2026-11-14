@@ -62,13 +62,8 @@ Once all parallel workers have reported back:
      --verify-file literature/<filename>.pdf --keywords "<Author>,<SampleSize_or_KeyTerm>"
    ```
 
-2. **Generate Verified Extract PDFs for Paywalled Studies (If Needed)**:
-   If a primary journal PDF is behind a publisher paywall but exact abstract/table metrics are verified via PubMed/DOI metadata, generate an audit-compliant extract PDF:
-   ```bash
-   .venv/bin/python3 .agents/skills/parallel-literature-harvester/scripts/verify_and_register_harvest.py \
-     --create-extract-pdf <scratch_dir>/spec_<slug>.json \
-     --out literature/<Author>_<Year>_<Journal>_Extract.pdf
-   ```
+2. **Enforce Primary-Source-Only Contract (No Synthesized Extract PDFs)**:
+   **NEVER** build, render, or compile new PDFs out of scraped web text, search summaries, or JSON specs (`--create-extract-pdf` is **non-conforming to contract** and disabled). `literature/` and `rawdata/` must contain **only unmodified primary-source documents** (`.pdf`, `.csv`, `.xlsx`, `.xml`) downloaded directly from the publisher, institutional repository, or statistical agency. If a primary PDF is behind a paywall or anti-bot gate, query an open-access institutional/government mirror or report the exact blocked URL to the user so they can supply the primary file.
 
 3. **Merge Worker Payloads & Synchronize Cryptographic Manifests**:
    Aggregate the worker scratch files and synchronize `rawdata/MANIFEST.csv` and `rawdata/rawdata.md`:
@@ -96,7 +91,7 @@ Field testing across high-throughput literature harvesting revealed four common 
 ### 1. Paywall Landing Pages Masquerading as PDFs
 Publisher servers often return HTTP 200 containing HTML paywalls (`<!DOCTYPE html>`) when `curl` or `wget` attempts to fetch a `.pdf` URL:
 * **The Check**: Every downloaded `.pdf` must begin with the `%PDF-` magic header, be $\ge 1{,}000$ bytes, and pass a test parse with `pypdf`.
-* **Remedy**: Never rename an HTML landing page to `.pdf`. If paywalled, either query an open-access green repository (PubMed Central, institutional university handle, national statistical portal) or generate a verified extract PDF using `--create-extract-pdf`.
+* **Remedy**: Never rename an HTML landing page to `.pdf`, and **never synthesize a PDF from scraped text or JSON summaries** (building PDFs of scraped information is **non-conforming to contract**). If paywalled or bot-gated, query an open-access green repository (PubMed Central, institutional university handle, national statistical portal) or report the exact blocked URL to the user.
 
 ### 2. PubMed Central (PMC) ID Collisions & Title Verification
 When querying PMC APIs or open-access mirrors, guessing or mistyping PMC numbers downloads a valid PDF of an entirely unrelated paper:

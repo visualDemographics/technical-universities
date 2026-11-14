@@ -518,13 +518,13 @@ def render_panel_g(ax, data, lang="en", is_standalone=False, degree_level="Maste
     if degree_level == "Master":
         col_sticker = "total_sticker_cost_usd" if tuition_mode == "intl" else "local_total_sticker_cost_usd"
         col_net = "net_total_degree_cost_usd" if tuition_mode == "intl" else "local_net_total_degree_cost_usd"
-        cohort_tag = "Master Intl" if tuition_mode == "intl" else "Master Domestic"
-        cohort_tag_de = "Master Intl" if tuition_mode == "intl" else "Master Inland"
+        cohort_tag = "Engineering Master Intl" if tuition_mode == "intl" else "Engineering Master Domestic"
+        cohort_tag_de = "Ingenieur-Master Intl" if tuition_mode == "intl" else "Ingenieur-Master Inland"
     else:
         col_sticker = "bachelors_total_sticker_cost_usd" if tuition_mode == "intl" else "bachelors_local_total_sticker_cost_usd"
         col_net = "bachelors_net_total_degree_cost_usd" if tuition_mode == "intl" else "bachelors_local_net_total_degree_cost_usd"
-        cohort_tag = "Bachelor Intl" if tuition_mode == "intl" else "Bachelor Domestic"
-        cohort_tag_de = "Bachelor Intl" if tuition_mode == "intl" else "Bachelor Inland"
+        cohort_tag = "Engineering Bachelor Intl" if tuition_mode == "intl" else "Engineering Bachelor Domestic"
+        cohort_tag_de = "Ingenieur-Bachelor Intl" if tuition_mode == "intl" else "Ingenieur-Bachelor Inland"
 
     df = data["master"].sort_values(col_sticker, ascending=False)
     x = np.arange(len(df))
@@ -540,15 +540,17 @@ def render_panel_g(ax, data, lang="en", is_standalone=False, degree_level="Maste
     bars_n = ax.bar(x + width/2.0, net, width, label=lbl_net, color="#0065BD", alpha=0.95)
 
     max_val = max(float(np.max(sticker)), float(np.max(net)))
-    lbl_fs = 5.5 if not is_standalone else 7.8
-    for bar, val in zip(bars_s, sticker):
-        ax.text(bar.get_x() + bar.get_width() / 2.0, val + max_val * 0.015, f"${val:.0f}k",
+    lbl_fs = 4.9 if not is_standalone else 7.5
+    for bar_s, s_val, bar_n, n_val in zip(bars_s, sticker, bars_n, net):
+        near = abs(s_val - n_val) < max_val * 0.08
+        s_y = s_val + max_val * (0.048 if near else 0.014)
+        n_y = n_val + max_val * 0.012
+        ax.text(bar_s.get_x() + bar_s.get_width() / 2.0 - 0.03, s_y, f"${s_val:.0f}k",
                 ha="center", va="bottom", fontsize=lbl_fs, color="#A93226", fontweight="bold")
-    for bar, val in zip(bars_n, net):
-        ax.text(bar.get_x() + bar.get_width() / 2.0, val + max_val * 0.015, f"${val:.0f}k",
+        ax.text(bar_n.get_x() + bar_n.get_width() / 2.0 + 0.03, n_y, f"${n_val:.0f}k",
                 ha="center", va="bottom", fontsize=lbl_fs, color="#004C97", fontweight="bold")
 
-    ax.set_ylim(0, max_val * 1.16)
+    ax.set_ylim(0, max_val * 1.18)
     ax.set_xticks(x)
     ax.set_xticklabels([u.replace("_", " ") for u in df["university_id"]], rotation=30, ha="right", fontsize=7.5 if not is_standalone else 10)
     ax.set_ylabel("Total Degree Cost ($1,000 USD)" if lang == "en" else "Gesamte Studienkosten (Tsd. USD)", fontsize=8.5 if not is_standalone else 11)
@@ -617,10 +619,18 @@ def render_panel_h(ax, data, lang="en", is_standalone=False, degree_level="Maste
 
     ax.set_xticks(x)
     ax.set_xticklabels([u.replace("_", " ") for u in df["university_id"]], rotation=30, ha="right", fontsize=7.5 if not is_standalone else 10)
+    max_y = max(float(np.max(y20_ppp)), float(np.max(y20_nom)))
+    ax.set_ylim(0, max_y * 1.28)
     ax.set_ylabel("Annual Salary (1,000 USD / Int'l $)" if lang == "en" else "Jahresgehalt (Tsd. USD / KKP $)", fontsize=8.5 if not is_standalone else 11)
-    title_en = f"Panel H: {deg_label} Career Salaries (Y1, Y10 & 20-Yr)"
-    title_de = f"Panel H: {deg_label}-Karrieregehälter (J1, J10 & 20J)"
-    ax.set_title(title_en if lang == "en" else title_de, fontsize=10 if not is_standalone else 13, fontweight="bold", pad=7)
+    title_en = (
+        f"Panel H: {deg_label} Career Salaries (Engineering Cohort)\n"
+        f"(Y1 Starting, Y10 Mid-Career & Y20 Senior)"
+    )
+    title_de = (
+        f"Panel H: {deg_label}-Karrieregehälter (Ingenieur-Kohorte)\n"
+        f"(J1 Einstieg, J10 Berufserf. & J20 Senior)"
+    )
+    ax.set_title(title_en if lang == "en" else title_de, fontsize=9.2 if not is_standalone else 12.5, fontweight="bold", pad=6)
     ax.legend(fontsize=6.0 if not is_standalone else 8.2, loc="upper right")
     ax.grid(axis="y", linestyle="--", alpha=0.3)
 
@@ -638,8 +648,8 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
     col_wealth = "cumulative_wealth_opp_cost_usd" if tuition_mode == "intl" else "cumulative_wealth_local_opp_cost_usd"
     col_cs = "cumulative_wealth_opp_cost_cs_usd" if tuition_mode == "intl" else "cumulative_wealth_local_opp_cost_cs_usd"
     col_mech = "cumulative_wealth_opp_cost_mech_usd" if tuition_mode == "intl" else "cumulative_wealth_local_opp_cost_mech_usd"
-    cohort_tag = f"{degree_level} Intl" if tuition_mode == "intl" else f"{degree_level} Domestic"
-    cohort_tag_de = f"{degree_level} Intl" if tuition_mode == "intl" else f"{degree_level} Inland"
+    cohort_tag = f"Engineering {degree_level} Intl" if tuition_mode == "intl" else f"Engineering {degree_level} Domestic"
+    cohort_tag_de = f"Ingenieur-{degree_level} Intl" if tuition_mode == "intl" else f"Ingenieur-{degree_level} Inland"
 
     styles = {
         "MIT": {"ls": "-", "marker": "o"},
@@ -653,32 +663,27 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
         "NTU": {"ls": "-", "marker": "X"},
     }
 
-    y_max_roi = 24.5
-    y_min_roi = -2.0
+    y_max_wealth = 2.05
+    y_min_wealth = -0.35
     horizon_years = 24 if degree_level == "Bachelor" else 22
     short_grad = 3 if degree_level == "Bachelor" else 1
     long_grad = 4 if degree_level == "Bachelor" else 2
-    outliers = []
     end_labels = []
 
     for uid in universities:
         sub = df_traj.loc[(df_traj["university_id"] == uid) & (df_traj["degree_level"] == degree_level)].sort_values("year_since_matriculation")
         x_yrs = np.concatenate([[0.0], sub["year_since_matriculation"].values])
 
-        row_m = df_master.loc[df_master["university_id"] == uid].iloc[0]
-        if degree_level == "Master":
-            net_cost = float(row_m["net_total_degree_cost_usd"] if tuition_mode == "intl" else row_m["local_net_total_degree_cost_usd"])
-        else:
-            net_cost = float(row_m["bachelors_net_total_degree_cost_usd"] if tuition_mode == "intl" else row_m["bachelors_local_net_total_degree_cost_usd"])
+        net_tuition = float(sub["net_tuition_total_usd"].iloc[0] if tuition_mode == "intl" else sub["net_tuition_local_total_usd"].iloc[0])
         foregone_total = float(sub["foregone_earnings_total_usd"].iloc[0])
-        econ_inv = net_cost + foregone_total
+        econ_inv = net_tuition + foregone_total
         assert econ_inv > 0.0, f"Economic investment must be positive for {uid}"
 
-        roi_traj = np.concatenate([[0.0], sub[col_wealth].values / econ_inv])
-        roi_cs = np.concatenate([[0.0], sub[col_cs].values / econ_inv])
-        roi_mech = np.concatenate([[0.0], sub[col_mech].values / econ_inv])
-        roi_20y = float(roi_traj[-1])
+        wealth_traj = np.concatenate([[0.0], sub[col_wealth].values / 1e6])
+        wealth_cs = np.concatenate([[0.0], sub[col_cs].values / 1e6])
+        wealth_mech = np.concatenate([[0.0], sub[col_mech].values / 1e6])
         wealth_20y_usd = float(sub[col_wealth].iloc[-1])
+        roi_20y = wealth_20y_usd / econ_inv
         if abs(wealth_20y_usd) >= 1e6:
             w_str = f"+${wealth_20y_usd / 1e6:.2f}M"
         else:
@@ -687,17 +692,14 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
         color = PALETTE_9[uid]
         st = styles[uid]
 
-        if roi_20y > y_max_roi:
-            outliers.append(f"{uid.replace('_', ' ')}: {roi_20y:.1f}x ({w_str})")
-        else:
-            end_labels.append({"y": roi_20y, "txt": w_str, "color": color})
+        end_labels.append({"y": float(wealth_traj[-1]), "txt": w_str, "color": color})
 
         # Uncertainty band between Mechanical Engineering and CS/AI
-        ax.fill_between(x_yrs, roi_mech, roi_cs, color=color, alpha=0.07)
+        ax.fill_between(x_yrs, wealth_mech, wealth_cs, color=color, alpha=0.07)
 
         ax.plot(
             x_yrs,
-            roi_traj,
+            wealth_traj,
             linestyle=st["ls"],
             marker=st["marker"],
             markersize=3.0 if not is_standalone else 4.5,
@@ -709,14 +711,14 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
 
     # De-overlap endpoint excess wealth labels at x = horizon_years + 0.25
     end_labels.sort(key=lambda d: d["y"])
-    min_gap = 0.85
+    min_gap = 0.085
     for i in range(1, len(end_labels)):
         if end_labels[i]["y"] - end_labels[i - 1]["y"] < min_gap:
             end_labels[i]["y"] = end_labels[i - 1]["y"] + min_gap
     for d in end_labels:
         ax.text(
             horizon_years + 0.25,
-            min(d["y"], y_max_roi - 0.4),
+            min(d["y"], y_max_wealth - 0.05),
             d["txt"],
             ha="left",
             va="center",
@@ -724,13 +726,6 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
             fontweight="bold",
             color=d["color"],
         )
-
-    if outliers:
-        outlier_hdr = "Above axis:" if lang == "en" else "Über Skala:"
-        outlier_txt = f"{outlier_hdr} " + " | ".join(outliers)
-        ax.text(horizon_years - 0.3, y_max_roi - 0.8, outlier_txt, ha="right", va="top",
-                fontsize=5.2 if not is_standalone else 7.2, color="#333333",
-                bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="#cccccc", alpha=0.90))
 
     ax.axhline(0, color="gray", linestyle="--", alpha=0.6)
     ax.axvspan(0, short_grad, color="lightgray", alpha=0.25,
@@ -741,19 +736,19 @@ def render_panel_i(ax, data, lang="en", is_standalone=False, degree_level="Maste
     ax.axvline(short_grad, color="#777777", linestyle=":", lw=0.9, alpha=0.7)
 
     ax.set_xlim(-0.5, horizon_years + 3.3)
-    ax.set_ylim(y_min_roi, y_max_roi)
+    ax.set_ylim(y_min_wealth, y_max_wealth)
     ax.set_xlabel("Years Since Matriculation (Fixed Age Horizon)" if lang == "en" else "Jahre seit Studienbeginn (Fester Altershorizont)", fontsize=8.5 if not is_standalone else 11)
-    ax.set_ylabel("Excess Wealth ROI (x of Net Cost + Foregone Wages)" if lang == "en" else "Überrendite-ROI (x aus Nettokosten + Opportunitätslohn)", fontsize=8.0 if not is_standalone else 10.5)
+    ax.set_ylabel("Cumulative Excess Wealth ($M USD)" if lang == "en" else "Kumuliertes Mehrvermögen (Mio. USD)", fontsize=8.0 if not is_standalone else 10.5)
 
     title_en = (
-        f"Panel I: {horizon_years}-Year Post-Matriculation ROI ({cohort_tag})\n"
-        f"(Baseline: Median No-College Salary, Age 20–45)"
+        f"Panel I: {horizon_years}-Year Post-Matriculation Excess Wealth ({cohort_tag})\n"
+        f"(Baseline: Associate / Ausbildung / Vocational, Age 20–45)"
     )
     title_de = (
-        f"Panel I: {horizon_years}-Jahres-ROI ab Studienbeginn ({cohort_tag_de})\n"
-        f"(Basis: Median-Gehalt ohne Studium, Alter 20–45)"
+        f"Panel I: {horizon_years}-Jahres-Mehrvermögen ab Studienbeginn ({cohort_tag_de})\n"
+        f"(Basis: Ausbildung / Facharbeiter / Associate, Alter 20–45)"
     )
-    ax.set_title(title_en if lang == "en" else title_de, fontsize=9.5 if not is_standalone else 12.5, fontweight="bold", pad=6)
+    ax.set_title(title_en if lang == "en" else title_de, fontsize=9.2 if not is_standalone else 12.5, fontweight="bold", pad=6)
     ax.legend(fontsize=5.2 if not is_standalone else 7.5, loc="upper left", ncol=2, framealpha=0.9)
     ax.grid(True, linestyle="--", alpha=0.3)
 
@@ -865,7 +860,7 @@ def render_historical_trajectories(ax, data, lang="en", is_standalone=False):
 def generate_bottom_row_4_variants_comparison(data, lang="en"):
     """Generate 4-row comparative composite of Panels G, H, I across Master & Bachelor x Native & Non-Native."""
     fig, axes = plt.subplots(4, 3, figsize=(19, 21), dpi=300)
-    fig.subplots_adjust(top=0.93, bottom=0.055, left=0.06, right=0.97, hspace=0.44, wspace=0.26)
+    fig.subplots_adjust(top=0.93, bottom=0.055, left=0.08, right=0.97, hspace=0.44, wspace=0.26)
 
     suptitle_bot = (
         "Global Technical Universities (2024/2025): 4-Cohort Degree Cost, Career Salary & 20-Year ROI Comparison\n"
@@ -909,7 +904,7 @@ def generate_bottom_row_4_variants_comparison(data, lang="en"):
     ]
 
     for row_idx, r_label in enumerate(row_labels):
-        axes[row_idx, 0].annotate(r_label, xy=(0, 0.5), xytext=(-axes[row_idx, 0].yaxis.labelpad - 35, 0),
+        axes[row_idx, 0].annotate(r_label, xy=(0, 0.5), xytext=(-axes[row_idx, 0].yaxis.labelpad - 58, 0),
                                   xycoords='axes fraction', textcoords='offset points',
                                   size=10, weight='bold', rotation=90, ha='center', va='center',
                                   color="#1F407A")

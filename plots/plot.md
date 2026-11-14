@@ -91,13 +91,13 @@ To provide comprehensive lifecycle evaluation, the bottom row of the synoptic ma
     - **Panel E**: Field-Normalized High-Impact Research Efficiency (Top-10% cited papers per \$10M PPP).
     - **Panel F**: Undergraduate Admissions Selectivity & First-Year Exam Screening Attrition (%).
   - **Row 3 (Bachelor's Lifecycle & Net Wealth Dynamics)**:
-    - **Panel G (Bachelor)**: Undergraduate Total Degree Investment (Tuition, Living Costs & Median Degree Duration).
-    - **Panel H (Bachelor)**: Undergraduate Early-Career, 10-Year & 20-Year Career Outcome Salaries.
-    - **Panel I (Bachelor)**: 24-Year Post-Matriculation Economic ROI Multiple & Excess Wealth Trajectories.
+    - **Panel G (Bachelor)**: Undergraduate Total Degree Investment (Engineering Cohort: Tuition, Living Costs & Median Degree Duration).
+    - **Panel H (Bachelor)**: Bachelor's Early-Career, 10-Year & 20-Year Career Outcome Salaries (Engineering Cohort).
+    - **Panel I (Bachelor)**: 24-Year Post-Matriculation Economic ROI Multiple & Excess Wealth Trajectories (Engineering Cohort).
   - **Row 4 (Master's Domestic Lifecycle & Net Wealth Dynamics)**:
-    - **Panel G (Master Domestic)**: Domestic Master's Total Degree Investment (Tuition, Living Costs & Median Degree Duration).
-    - **Panel H (Master Domestic)**: Master's Early-Career, 10-Year & 20-Year Career Outcome Salaries.
-    - **Panel I (Master Domestic)**: 22-Year Post-Matriculation Economic ROI Multiple & Excess Wealth Trajectories.
+    - **Panel G (Master Domestic)**: Domestic Master's Total Degree Investment (Engineering Cohort: Tuition, Living Costs & Median Degree Duration).
+    - **Panel H (Master Domestic)**: Master's Early-Career, 10-Year & 20-Year Career Outcome Salaries (Engineering Cohort).
+    - **Panel I (Master Domestic)**: 22-Year Post-Matriculation Economic ROI Multiple & Excess Wealth Trajectories (Engineering Cohort).
 - **Language & Cohort Variants**:
   - `technical_universities_4x3_en.png`: English edition with Row 3 International Bachelor and Row 4 Domestic Master.
   - `technical_universities_4x3_de.png`: German edition with Row 3 International Bachelor and Row 4 Domestic Master.
@@ -118,16 +118,17 @@ To provide comprehensive lifecycle evaluation, the bottom row of the synoptic ma
 
 ### Panel G: Undergraduate & Graduate Net Price Modeling (`Tuition, Living Costs & Median Degree Duration`)
 - **Grouped Bar Architecture & Explicit Subtitle**:
-  - Displays Total Sticker Cost alongside Net Out-of-Pocket Cost across empirical median degree durations (`1.0 yr` Imperial/NTU MSc vs. `1.5–2.0 yr` other MS; `3.0 yr` Imperial BEng vs. `4.0 yr` empirical engineering median for ETH Zurich, TUM, US, and Asia), titled `Panel G: Total Degree Investment (<Cohort>)\n(Tuition, Living Costs & Median Degree Duration)`.
+  - Displays Total Sticker Cost alongside Net Out-of-Pocket Cost across empirical median degree durations (`1.0 yr` Imperial/NTU MSc vs. `1.5–2.0 yr` other MS; `3.0 yr` Imperial BEng vs. `4.0 yr` empirical engineering median for ETH Zurich, TUM, US, and Asia), titled `Panel G: Total Degree Investment (Engineering <Cohort>)\n(Tuition, Living Costs & Median Degree Duration)`.
   - Reflects the official **U.S. Department of Education IPEDS Median Net Price for Aided Students** for US domestic students, statutory domestic rates for Europe and Asia, and verified research/teaching assistantship (RA/TA/HiWi) and bursary offsets (`€12.41–€14.00/hr` TUM HiWi, `CHF 30.70/hr` ETH *Hilfsassistierende*, Imperial Bursary).
 
 ### Panel H: Career Outcome Salaries (Year 1, Year 10 & Year 20)
 - **4-Bar Architecture**:
-  - Reports **Year 1 Starting Median Salaries (Nominal USD)**, **Year 10 Mid-Career Median (Nominal USD)**, **Year 20 Senior Median (Nominal USD)**, and **Year 20 Senior Median in World Bank PPP International Dollars**.
+  - Reports **Year 1 Starting Median Salaries (Nominal USD)**, **Year 10 Mid-Career Median (Nominal USD)**, **Year 20 Senior Median (Nominal USD)**, and **Year 20 Senior Median in World Bank PPP International Dollars**, explicitly titled `Panel H: <Degree> Career Salaries (Engineering Cohort)\n(Y1 Starting, Y10 Mid-Career & Y20 Senior)`.
   - Provides a clean, direct comparison of entry-level, mid-career, and 20-year senior compensation across all 9 tech hubs.
 
 ### Panel I: Post-Matriculation Economic ROI Multiple (Excess Wealth / Total Economic Investment)
 - **Fixed Post-Matriculation Horizon (`22`-Yr Master / `24`-Yr Bachelor) & Empirical No-College Counterfactual Baseline**:
+  - Titled `Panel I: <Horizon>-Year Post-Matriculation ROI (Engineering <Cohort>)\n(Baseline: Median No-College Salary, Age 20–45)`.
   - Plotted on `year_since_matriculation` (`0..22` for Master [ages 22–44] and `0..24` for Bachelor [ages 18–42]), with shaded `Study Phase` (`1-Yr` / `3-Yr`) and hatched additional study year (`2nd Study Yr (2-Yr MS)` / `4th Study Yr (4-Yr BSc)`), so 1-year MSc (Imperial, NTU) and 3-year BEng (Imperial) naturally capture their 1-year labor-market head start (`21` career years vs. `20` career years).
   - **Study vs. Career Living Expenses**: Study years use campus student living budgets (`annual_living_cost_lcu`), whereas post-graduation career years use each country's **empirical age-graded (`20–45` yr) no-college net salary** (`nocollege_salary_20_24_lcu` .. `nocollege_salary_40_45_lcu`, from BLS/NCES, ONS ASHE/DfE LEO, BFS LSE, Destatis/BA, NBS/NBER, MOEL/KOSTAT, Singapore MOM CLFS) as the counterfactual baseline (where shared single-adult city living expenses cancel out identically between the graduate and non-college counterfactual).
   - **Foregone Earnings**: Incorporates country-specific **median 20-year-old net wages** (`youth_median_gross_salary_lcu`) during Bachelor study years and Bachelor Year-1 net salaries during Master study years.
